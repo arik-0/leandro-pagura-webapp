@@ -88,7 +88,7 @@ function Landing() {
               ))}
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* BIO */}
@@ -123,12 +123,12 @@ function Landing() {
               </p>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* MUSICA */}
       <section id="musica" className="py-24 bg-accent/10">
-        <div className="container-x">
+        <FadeIn className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— MÚSICA</div>
           <h2 className="text-5xl md:text-6xl mb-10">Escuchá el material</h2>
           <Card className="p-6 md:p-10 bg-card/60 backdrop-blur border-border transition-all duration-300 hover:shadow-lg hover:border-primary/40">
@@ -153,12 +153,12 @@ function Landing() {
               <Button variant="outline"><Youtube className="mr-2 size-4" /> YouTube</Button>
             </div>
           </Card>
-        </div>
+        </FadeIn>
       </section>
 
       {/* MEDIA */}
       <section id="media" className="py-24">
-        <div className="container-x">
+        <FadeIn className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— MEDIA</div>
           <h2 className="text-5xl md:text-6xl mb-10">Momentos</h2>
           <div className="grid md:grid-cols-3 gap-4">
@@ -174,12 +174,12 @@ function Landing() {
               </div>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* PROYECTOS */}
       <section id="proyectos" className="py-24 bg-accent/10">
-        <div className="container-x">
+        <FadeIn className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— PROYECTOS ACTUALES</div>
           <h2 className="text-5xl md:text-6xl mb-10">Leandro Pagura Cuarteto</h2>
           <Card className="overflow-hidden bg-card/60 backdrop-blur border-border transition-all duration-500 hover:shadow-2xl hover:border-primary/40 group">
@@ -199,7 +199,7 @@ function Landing() {
               </div>
             </div>
           </Card>
-        </div>
+        </FadeIn>
       </section>
 
       {/* SETUP */}
@@ -235,12 +235,12 @@ function Landing() {
               </li>
             </ul>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* SHOWS */}
       <section id="shows" className="py-24 bg-accent/10">
-        <div className="container-x">
+        <FadeIn className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— PRÓXIMOS SHOWS</div>
           <h2 className="text-5xl md:text-6xl mb-10">Agenda</h2>
           <div className="space-y-4">
@@ -257,7 +257,7 @@ function Landing() {
               </Card>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* CONTACTO */}
@@ -271,7 +271,7 @@ function Landing() {
             <Button asChild size="lg" variant="outline"><a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><Youtube className="mr-2 size-4" /> YouTube</a></Button>
             <Button asChild size="lg" variant="outline"><a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer"><Music2 className="mr-2 size-4" /> Spotify</a></Button>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       <SiteFooter />
