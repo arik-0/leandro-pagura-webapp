@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const heroImg = "/f3004a62-a83f-4ae8-b5ce-8ddb57b56c0c-copied-media~2.jpg";
-const bioImg = "/leandro-prensa.jpg";
+const bioImg = "/2b7b07a6-4f30-4bfe-9bd6-e1f77cde3a62-copied-media~2.jpg";
 const setupImg = "/9c113a46-b0e2-488e-b11d-08095a698ca1-copied-media~2.jpg";
 const quartetImg = "/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg";
 const studioImg = "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80";
@@ -100,7 +100,8 @@ function Landing() {
           </div>
           <div className="md:col-span-3">
             <div className="text-xs tracking-[0.3em] text-primary mb-3">— BIOGRAFÍA</div>
-            <h2 className="text-5xl md:text-6xl mb-6">Dos décadas de<br />groove y sesión.</h2>
+            <h2 className="text-5xl md:text-6xl mb-4">Dos décadas de<br />groove y sesión.</h2>
+            <p className="text-lg md:text-xl text-foreground mb-6">Conocé la trayectoria, los proyectos y el recorrido musical de Leandro Pagura.</p>
             <div className="space-y-4 text-muted-foreground">
               <p>
                 Leandro Pagura es un bajista, compositor y docente argentino con más de dos décadas de
