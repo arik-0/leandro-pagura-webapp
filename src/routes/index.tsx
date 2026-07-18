@@ -48,7 +48,7 @@ function Landing() {
             <span className="text-primary">y Educador</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground text-balance">
-            Groove y solidez en la escena musical nacional e internacional.
+            Bajista argentino con más de dos décadas de trayectoria. Música, composición y enseñanza con un estilo que fusiona jazz, funk, rock y música contemporánea.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg"><Link to="/cursos">Explorar cursos <ArrowRight className="ml-2 size-4" /></Link></Button>
@@ -103,14 +103,20 @@ function Landing() {
             <h2 className="text-5xl md:text-6xl mb-6">Dos décadas de<br />groove y sesión.</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Con más de dos décadas de carrera, mi enfoque une la solidez del bajista de sesión
-                con la libertad expresiva de la improvisación. He tenido el inmenso privilegio de
-                compartir escenarios y grabar con figuras legendarias, marcando el pulso en
-                innumerables proyectos.
+                Leandro Pagura es un bajista, compositor y docente argentino con más de dos décadas de
+                trayectoria. Especializado en jazz fusión, funk, rock y música contemporánea, ha desarrollado
+                una sólida carrera como intérprete, sesionista y educador, combinando una fuerte identidad musical
+                con una amplia experiencia tanto en el escenario como en la enseñanza.
               </p>
               <p>
-                Como educador, busco que el alumno encuentre su propia voz en el instrumento,
-                dominando la armonía, el micro-time y el control total del groove.
+                Como líder del Leandro Pagura Quartet, desarrolla un repertorio original donde conviven la
+                improvisación, la sofisticación armónica y el groove. Paralelamente, dicta clases y masterclasses de
+                bajo eléctrico, compartiendo su experiencia con músicos de distintos niveles.
+              </p>
+              <p>
+                Actualmente es endorser de Magma Strings y Swan Basses, y se encuentra trabajando en su
+                primer álbum de estudio junto a reconocidos músicos internacionales, consolidando un proyecto
+                con proyección hacia escenarios y festivales de Europa y América.
               </p>
             </div>
           </div>
