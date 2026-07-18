@@ -42,10 +42,10 @@ function Landing() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
         </div>
         <div className="container-x relative z-10">
-          <Badge variant="outline" className="mb-6 border-primary/40 text-primary bg-primary/5">Bajista · Sesionista · Educador</Badge>
-          <h1 className="font-display text-7xl md:text-9xl leading-none text-balance">
-            LEANDRO<br />
-            <span className="text-primary">PAGURA</span>
+          <Badge variant="outline" className="mb-6 border-primary/40 text-primary bg-primary/5">Sitio Oficial</Badge>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-none text-balance uppercase">
+            Bajista, Sesionista<br />
+            <span className="text-primary">y Educador</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground text-balance">
             Groove y solidez en la escena musical nacional e internacional.
