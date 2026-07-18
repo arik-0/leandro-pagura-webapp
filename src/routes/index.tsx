@@ -80,7 +80,7 @@ function Landing() {
                 { icon: Music2, title: "Escalas complejas" },
                 { icon: Guitar, title: "Rutinas de práctica" },
               ].map((it) => (
-                <Card key={it.title} className="p-6 bg-card/60 backdrop-blur border-border">
+                <Card key={it.title} className="p-6 bg-card/60 backdrop-blur border-border transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-primary/50">
                   <it.icon className="size-8 text-primary mb-3" />
                   <div className="font-semibold">{it.title}</div>
                 </Card>
@@ -130,7 +130,7 @@ function Landing() {
         <div className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— MÚSICA</div>
           <h2 className="text-5xl md:text-6xl mb-10">Escuchá el material</h2>
-          <Card className="p-6 md:p-10 bg-card/60 backdrop-blur border-border">
+          <Card className="p-6 md:p-10 bg-card/60 backdrop-blur border-border transition-all duration-300 hover:shadow-lg hover:border-primary/40">
             <p className="text-muted-foreground max-w-2xl mb-8">
               Grabaciones, singles y colaboraciones directamente desde Spotify.
             </p>
@@ -181,7 +181,7 @@ function Landing() {
         <div className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— PROYECTOS ACTUALES</div>
           <h2 className="text-5xl md:text-6xl mb-10">Leandro Pagura Cuarteto</h2>
-          <Card className="overflow-hidden bg-card/60 backdrop-blur border-border">
+          <Card className="overflow-hidden bg-card/60 backdrop-blur border-border transition-all duration-500 hover:shadow-2xl hover:border-primary/40 group">
             <div className="grid md:grid-cols-2">
               <div className="relative aspect-[4/3] md:aspect-auto">
                 <img src={quartetImg} alt="Leandro Pagura Cuarteto" loading="lazy" width={1600} height={1000} className="h-full w-full object-cover" />
@@ -244,7 +244,7 @@ function Landing() {
           <h2 className="text-5xl md:text-6xl mb-10">Agenda</h2>
           <div className="space-y-4">
             {shows.map((s) => (
-              <Card key={s.title + s.date} className="p-6 md:p-8 bg-card/60 backdrop-blur border-border flex flex-col md:flex-row md:items-center gap-6">
+              <Card key={s.title + s.date} className="p-6 md:p-8 bg-card/60 backdrop-blur border-border flex flex-col md:flex-row md:items-center gap-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-md hover:border-primary/40">
                 <div className="md:w-40 shrink-0">
                   <div className="font-display text-3xl text-primary">{s.date}</div>
                 </div>
