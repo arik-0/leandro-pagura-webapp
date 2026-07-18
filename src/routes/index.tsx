@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Instagram, Youtube, Music2, Mail, ArrowRight, PlayCircle, Ticket, Zap, Cpu, Guitar, Speaker } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { FadeIn } from "@/components/ui/fade-in";
 import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -41,7 +42,7 @@ function Landing() {
           <img src={heroImg} alt="En vivo" width={1920} height={1280} className="h-full w-full object-cover object-center opacity-70" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
         </div>
-        <div className="container-x relative z-10">
+        <FadeIn className="container-x relative z-10">
           <Badge variant="outline" className="mb-6 border-primary/40 text-primary bg-primary/5">Sitio Oficial</Badge>
           <h1 className="font-display text-7xl md:text-9xl leading-none text-balance">
             LEANDRO<br />
@@ -54,12 +55,12 @@ function Landing() {
             <Button asChild size="lg"><Link to="/cursos">Explorar cursos <ArrowRight className="ml-2 size-4" /></Link></Button>
             <Button asChild size="lg" variant="outline"><a href="#shows">Próximos shows</a></Button>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* CURSOS TEASER */}
       <section id="cursos" className="py-24 bg-gradient-to-b from-transparent to-accent/20">
-        <div className="container-x">
+        <FadeIn className="container-x">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <Badge className="mb-4">Próximamente</Badge>
@@ -92,7 +93,7 @@ function Landing() {
 
       {/* BIO */}
       <section id="bio" className="py-24">
-        <div className="container-x grid md:grid-cols-5 gap-12 items-center">
+        <FadeIn className="container-x grid md:grid-cols-5 gap-12 items-center">
           <div className="md:col-span-2">
             <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-border">
               <img src={bioImg} alt="Retrato de Leandro Pagura" loading="lazy" width={1200} height={1500} className="h-full w-full object-cover" />
@@ -203,7 +204,7 @@ function Landing() {
 
       {/* SETUP */}
       <section id="setup" className="py-24">
-        <div className="container-x grid md:grid-cols-2 gap-12 items-center">
+        <FadeIn className="container-x grid md:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-video overflow-hidden rounded-xl border border-border">
             <img src={setupImg} alt="Setup de Leandro Pagura" loading="lazy" width={1920} height={1080} className="h-full w-full object-cover" />
           </div>
@@ -261,7 +262,7 @@ function Landing() {
 
       {/* CONTACTO */}
       <section id="contacto" className="py-24">
-        <div className="container-x text-center">
+        <FadeIn className="container-x text-center">
           <div className="text-xs tracking-[0.3em] text-primary mb-3">— CONTACTO</div>
           <h2 className="text-5xl md:text-6xl mb-6 text-balance">¿Listo para mejorar tu groove<br />o agendar una sesión?</h2>
           <div className="flex flex-wrap justify-center gap-3 mt-8">
