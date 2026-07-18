@@ -44,11 +44,11 @@ function Landing() {
         <div className="container-x relative z-10">
           <Badge variant="outline" className="mb-6 border-primary/40 text-primary bg-primary/5">Sitio Oficial</Badge>
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-none text-balance uppercase">
-            Bajista, Sesionista<br />
-            <span className="text-primary">y Educador</span>
+            Leandro<br />
+            <span className="text-primary">Pagura</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground text-balance">
-            Bajista argentino con más de dos décadas de trayectoria. Música, composición y enseñanza con un estilo que fusiona jazz, funk, rock y música contemporánea.
+            Bajista · Compositor · Educador
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg"><Link to="/cursos">Explorar cursos <ArrowRight className="ml-2 size-4" /></Link></Button>
