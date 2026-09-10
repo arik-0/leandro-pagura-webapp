@@ -32,6 +32,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
 import {
@@ -530,6 +531,9 @@ function AdminPage() {
             <DialogTitle className="text-2xl font-display">
               {editingItem ? "Editar Elemento de Galería" : "Cargar Elemento a la Galería"}
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Formulario de carga y edición de fotos y videos de la galería
+            </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSaveGalleryItem} className="space-y-4 py-2">
@@ -690,6 +694,9 @@ function AdminPage() {
             <DialogTitle className="text-2xl font-display">
               {editingShow ? "Editar Show de Agenda" : "Agregar Show a la Agenda"}
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Formulario para agregar y editar conciertos y compra de tickets
+            </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSaveShow} className="space-y-4 py-2">

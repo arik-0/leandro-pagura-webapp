@@ -3,7 +3,13 @@ import { Play, Image as ImageIcon, Video, X, ExternalLink, Sparkles } from "luci
 import { FadeIn } from "@/components/ui/fade-in";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { useGallery, GalleryItem, extractYouTubeId } from "@/lib/site-data";
 
 export function GallerySection() {
@@ -156,9 +162,14 @@ export function GallerySection() {
       </FadeIn>
 
       {/* Lightbox / Video Modal */}
-      <Dialog open={!!activeItem} onOpenChange={(open) => !open && setActiveItem(null)}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background/95 border-border backdrop-blur-2xl">
-          {activeItem && (
+      {activeItem && (
+        <Dialog open={!!activeItem} onOpenChange={(open) => !open && setActiveItem(null)}>
+          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background/95 border-border backdrop-blur-2xl">
+            <DialogHeader className="sr-only">
+              <DialogTitle>{activeItem.title}</DialogTitle>
+              <DialogDescription>{activeItem.description || activeItem.title}</DialogDescription>
+            </DialogHeader>
+
             <div>
               {activeItem.type === "video" ? (
                 <div className="relative aspect-video w-full bg-black">
@@ -210,9 +221,9 @@ export function GallerySection() {
                   )}
                 </div>
 
-                <DialogTitle className="text-2xl font-display tracking-wide mt-3 text-foreground">
+                <h4 className="text-2xl font-display tracking-wide mt-3 text-foreground">
                   {activeItem.title}
-                </DialogTitle>
+                </h4>
 
                 {activeItem.description && (
                   <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
@@ -221,9 +232,9 @@ export function GallerySection() {
                 )}
               </div>
             </div>
-          )}
-        </DialogContent>
-      </Dialog>
+          </DialogContent>
+        </Dialog>
+      )}
     </section>
   );
 }

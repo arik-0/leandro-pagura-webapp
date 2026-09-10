@@ -9,22 +9,49 @@ export function useAuth() {
 
   useEffect(() => {
     let mounted = true;
-    supabase.auth.getUser().then(({ data }) => {
-      if (!mounted) return;
-      setUser(data.user);
-      setLoading(false);
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      setUser(session?.user ?? null);
-    });
-    return () => { mounted = false; sub.subscription.unsubscribe(); };
+    try {
+      supabase.auth
+        .getUser()
+        .then(({ data }) => {
+          if (!mounted) return;
+          setUser(data?.user ?? null);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.warn("[useAuth] getUser error:", err);
+          if (mounted) setLoading(false);
+        });
+
+      const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+        if (mounted) setUser(session?.user ?? null);
+      });
+      return () => {
+        mounted = false;
+        sub?.subscription?.unsubscribe();
+      };
+    } catch (e) {
+      console.warn("[useAuth] initialization error:", e);
+      if (mounted) setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
-    if (!user) { setIsAdmin(false); return; }
-    supabase.rpc("has_role", { _user_id: user.id, _role: "admin" }).then(({ data }) => {
-      setIsAdmin(!!data);
-    });
+    if (!user) {
+      setIsAdmin(false);
+      return;
+    }
+    try {
+      supabase
+        .rpc("has_role", { _user_id: user.id, _role: "admin" })
+        .then(({ data }) => {
+          setIsAdmin(!!data);
+        })
+        .catch((err) => {
+          console.warn("[useAuth] has_role error:", err);
+        });
+    } catch (e) {
+      console.warn("[useAuth] rpc error:", e);
+    }
   }, [user]);
 
   return { user, loading, isAdmin };
