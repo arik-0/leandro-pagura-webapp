@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +14,7 @@ const NAV = [
   { href: "#proyectos", label: "Proyectos" },
   { href: "#shows", label: "Shows" },
   { href: "#cursos", label: "Cursos" },
-  { href: "#media", label: "Media" },
+  { href: "/media", label: "Media", isPage: true },
   { href: "#setup", label: "Setup" },
   { href: "#contacto", label: "Contacto" },
 ];
@@ -25,6 +25,9 @@ export function SiteHeader({ variant = "landing" }: { variant?: "landing" | "app
   const { user, isAdmin: isSupabaseAdmin } = useAuth();
   const { isAdmin: isSessionAdmin, setAdminLogin } = useAdminSession();
   const isAdmin = isSupabaseAdmin || isSessionAdmin;
+
+  const routerState = useRouterState();
+  const isHome = routerState?.location?.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -59,19 +62,31 @@ export function SiteHeader({ variant = "landing" }: { variant?: "landing" | "app
           LEANDRO<span className="text-foreground">·</span>PAGURA
         </Link>
 
-        {variant === "landing" && (
-          <nav className="hidden xl:flex items-center gap-6 text-sm text-muted-foreground font-medium">
-            {NAV.map((n) => (
+        <nav className="hidden xl:flex items-center gap-6 text-sm text-muted-foreground font-medium">
+          {NAV.map((n) => {
+            if (n.isPage) {
+              return (
+                <Link
+                  key={n.href}
+                  to={n.href}
+                  className="hover:text-foreground transition-colors hover:text-primary"
+                >
+                  {n.label}
+                </Link>
+              );
+            }
+            const targetHref = isHome ? n.href : `/${n.href}`;
+            return (
               <a
                 key={n.href}
-                href={n.href}
+                href={targetHref}
                 className="hover:text-foreground transition-colors hover:text-primary"
               >
                 {n.label}
               </a>
-            ))}
-          </nav>
-        )}
+            );
+          })}
+        </nav>
 
         <div className="hidden md:flex items-center gap-2">
           {isAdmin ? (
@@ -116,17 +131,31 @@ export function SiteHeader({ variant = "landing" }: { variant?: "landing" | "app
       {open && (
         <div className="xl:hidden border-t border-border bg-background/95 backdrop-blur-2xl">
           <div className="container-x py-5 flex flex-col gap-2">
-            {variant === "landing" &&
-              NAV.map((n) => (
+            {NAV.map((n) => {
+              if (n.isPage) {
+                return (
+                  <Link
+                    key={n.href}
+                    to={n.href}
+                    onClick={() => setOpen(false)}
+                    className="text-base font-medium text-muted-foreground hover:text-primary py-1.5 transition-colors"
+                  >
+                    {n.label}
+                  </Link>
+                );
+              }
+              const targetHref = isHome ? n.href : `/${n.href}`;
+              return (
                 <a
                   key={n.href}
-                  href={n.href}
+                  href={targetHref}
                   onClick={() => setOpen(false)}
                   className="text-base font-medium text-muted-foreground hover:text-primary py-1.5 transition-colors"
                 >
                   {n.label}
                 </a>
-              ))}
+              );
+            })}
             <div className="flex flex-col gap-2 pt-3 mt-2 border-t border-border">
               {isAdmin ? (
                 <>

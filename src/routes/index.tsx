@@ -5,6 +5,7 @@ import {
   Music2,
   Mail,
   ArrowRight,
+  Play,
   PlayCircle,
   Ticket,
   Zap,
@@ -22,7 +23,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GallerySection } from "@/components/gallery-section";
 import { useShows } from "@/lib/site-data";
 
 const heroImg = "/f3004a62-a83f-4ae8-b5ce-8ddb57b56c0c-copied-media~2.jpg";
@@ -86,9 +86,9 @@ function Landing() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild size="lg">
-              <a href="#media">
+              <Link to="/media">
                 Ver Galería <ArrowRight className="ml-2 size-4" />
-              </a>
+              </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <a href="#shows">Próximos shows</a>
@@ -238,7 +238,7 @@ function Landing() {
                     </a>
                   </Button>
                   <Button variant="outline" asChild className="w-fit">
-                    <a href="#media">Ver sesiones en vivo</a>
+                    <Link to="/media">Ver sesiones en vivo</Link>
                   </Button>
                 </div>
               </div>
@@ -385,8 +385,115 @@ function Landing() {
         </FadeIn>
       </section>
 
-      {/* 7. MEDIA (GALERÍA INTERACTIVA CON FOTOS Y VIDEOS) */}
-      <GallerySection />
+      {/* 7. MEDIA (PREVIEW DESTACADO Y ACCESO A PÁGINA SEPARADA /media) */}
+      <section id="media" className="py-24 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 blur-[120px] pointer-events-none rounded-full" />
+        <FadeIn className="container-x relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+              <div className="text-xs tracking-[0.3em] text-primary mb-3 font-semibold">
+                — MEDIA
+              </div>
+              <h2 className="text-5xl md:text-6xl font-display">Momentos & Sesiones</h2>
+              <p className="mt-3 text-muted-foreground max-w-xl text-base">
+                Grabaciones en estudio, sesiones en vivo de cuarteto y fotografías oficiales.
+              </p>
+            </div>
+            <Button asChild size="lg" className="self-start md:self-auto shadow-lg">
+              <Link to="/media">
+                Ver Galería Completa <ArrowRight className="ml-2 size-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link
+              to="/media"
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
+            >
+              <img
+                src="https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg"
+                alt="Jet Lag in Hulum"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute top-3 left-3">
+                <Badge
+                  variant="outline"
+                  className="bg-red-950/80 border-red-500/40 text-red-300 text-[11px]"
+                >
+                  <Play className="size-2.5 mr-1 fill-current" /> Video En Vivo
+                </Badge>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="size-12 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Play className="size-5 ml-0.5 fill-current" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 inset-x-0 p-4">
+                <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
+                  Leandro Pagura Cuarteto - Jet Lag in Hulum
+                </h3>
+              </div>
+            </Link>
+
+            <Link
+              to="/media"
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
+            >
+              <img
+                src="/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg"
+                alt="Leandro Pagura Cuarteto"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute top-3 left-3">
+                <Badge
+                  variant="outline"
+                  className="bg-primary/20 border-primary/40 text-primary text-[11px]"
+                >
+                  <Disc className="size-2.5 mr-1" /> Cuarteto
+                </Badge>
+              </div>
+              <div className="absolute bottom-0 inset-x-0 p-4">
+                <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
+                  Leandro Pagura Cuarteto Oficial
+                </h3>
+              </div>
+            </Link>
+
+            <Link
+              to="/media"
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
+            >
+              <img
+                src="https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg"
+                alt="EY - 3,3"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute top-3 left-3">
+                <Badge
+                  variant="outline"
+                  className="bg-red-950/80 border-red-500/40 text-red-300 text-[11px]"
+                >
+                  <Play className="size-2.5 mr-1 fill-current" /> Video
+                </Badge>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="size-12 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Play className="size-5 ml-0.5 fill-current" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 inset-x-0 p-4">
+                <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
+                  EY - 3,3 (Leandro Pagura)
+                </h3>
+              </div>
+            </Link>
+          </div>
+        </FadeIn>
+      </section>
 
       {/* 8. SETUP (EQUIPAMIENTO OFICIAL CON SWAN BASSES Y MAGMA STRINGS) */}
       <section id="setup" className="py-24 bg-accent/10">
