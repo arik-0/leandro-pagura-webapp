@@ -10,17 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CursosIndexRouteImport } from './routes/cursos.index'
 import { Route as CursosSlugRouteImport } from './routes/cursos.$slug'
 import { Route as AuthenticatedMiCuentaRouteImport } from './routes/_authenticated/mi-cuenta'
-import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedCursosSlugLeccionRouteImport } from './routes/_authenticated/cursos.$slug.$leccion'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -47,11 +52,6 @@ const AuthenticatedMiCuentaRoute = AuthenticatedMiCuentaRouteImport.update({
   path: '/mi-cuenta',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedCursosSlugLeccionRoute =
   AuthenticatedCursosSlugLeccionRouteImport.update({
     id: '/cursos/$slug/$leccion',
@@ -61,8 +61,8 @@ const AuthenticatedCursosSlugLeccionRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
-  '/admin': typeof AuthenticatedAdminRoute
   '/mi-cuenta': typeof AuthenticatedMiCuentaRoute
   '/cursos/$slug': typeof CursosSlugRoute
   '/cursos/': typeof CursosIndexRoute
@@ -70,8 +70,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
-  '/admin': typeof AuthenticatedAdminRoute
   '/mi-cuenta': typeof AuthenticatedMiCuentaRoute
   '/cursos/$slug': typeof CursosSlugRoute
   '/cursos': typeof CursosIndexRoute
@@ -81,8 +81,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/mi-cuenta': typeof AuthenticatedMiCuentaRoute
   '/cursos/$slug': typeof CursosSlugRoute
   '/cursos/': typeof CursosIndexRoute
@@ -92,8 +92,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/auth'
     | '/admin'
+    | '/auth'
     | '/mi-cuenta'
     | '/cursos/$slug'
     | '/cursos/'
@@ -101,8 +101,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/auth'
     | '/admin'
+    | '/auth'
     | '/mi-cuenta'
     | '/cursos/$slug'
     | '/cursos'
@@ -111,8 +111,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/admin'
     | '/auth'
-    | '/_authenticated/admin'
     | '/_authenticated/mi-cuenta'
     | '/cursos/$slug'
     | '/cursos/'
@@ -122,6 +122,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   CursosSlugRoute: typeof CursosSlugRoute
   CursosIndexRoute: typeof CursosIndexRoute
@@ -134,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -171,13 +179,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMiCuentaRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/admin': {
-      id: '/_authenticated/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AuthenticatedAdminRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/cursos/$slug/$leccion': {
       id: '/_authenticated/cursos/$slug/$leccion'
       path: '/cursos/$slug/$leccion'
@@ -189,13 +190,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedMiCuentaRoute: typeof AuthenticatedMiCuentaRoute
   AuthenticatedCursosSlugLeccionRoute: typeof AuthenticatedCursosSlugLeccionRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedMiCuentaRoute: AuthenticatedMiCuentaRoute,
   AuthenticatedCursosSlugLeccionRoute: AuthenticatedCursosSlugLeccionRoute,
 }
@@ -206,6 +205,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   CursosSlugRoute: CursosSlugRoute,
   CursosIndexRoute: CursosIndexRoute,
