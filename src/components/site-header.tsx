@@ -6,16 +6,14 @@ import { useAuth } from "@/hooks/use-auth";
 import { useAdminSession } from "@/lib/site-data";
 import { supabase } from "@/integrations/supabase/client";
 
-// Exactly as requested: Inicio | Bio | Música | Proyectos | Shows | Cursos | Media | Setup | Contacto
+// Navigation: Inicio | Sobre mí | Música | Proyectos | Shows | Media | Contacto (Cursos y Setup ocultos)
 const NAV = [
   { href: "#home", label: "Inicio" },
-  { href: "#bio", label: "Bio" },
+  { href: "/sobre-mi", label: "Sobre mí", isPage: true },
   { href: "#musica", label: "Música" },
   { href: "#proyectos", label: "Proyectos" },
   { href: "#shows", label: "Shows" },
-  { href: "#cursos", label: "Cursos" },
   { href: "/media", label: "Media", isPage: true },
-  { href: "#setup", label: "Setup" },
   { href: "#contacto", label: "Contacto" },
 ];
 
@@ -62,7 +60,7 @@ export function SiteHeader({ variant = "landing" }: { variant?: "landing" | "app
           LEANDRO<span className="text-foreground">·</span>PAGURA
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-6 text-sm text-muted-foreground font-medium">
+        <nav className="hidden lg:flex items-center gap-6 text-sm text-muted-foreground font-medium">
           {NAV.map((n) => {
             if (n.isPage) {
               return (
@@ -120,7 +118,7 @@ export function SiteHeader({ variant = "landing" }: { variant?: "landing" | "app
         </div>
 
         <button
-          className="xl:hidden text-foreground p-2 rounded-lg hover:bg-muted/40 transition-colors"
+          className="lg:hidden text-foreground p-2 rounded-lg hover:bg-muted/40 transition-colors"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menú"
         >
@@ -129,7 +127,7 @@ export function SiteHeader({ variant = "landing" }: { variant?: "landing" | "app
       </div>
 
       {open && (
-        <div className="xl:hidden border-t border-border bg-background/95 backdrop-blur-2xl">
+        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-2xl">
           <div className="container-x py-5 flex flex-col gap-2">
             {NAV.map((n) => {
               if (n.isPage) {

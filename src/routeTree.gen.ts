@@ -9,8 +9,10 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreMiRouteImport } from './routes/sobre-mi'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as BioRouteImport } from './routes/bio'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
@@ -20,6 +22,11 @@ import { Route as CursosSlugRouteImport } from './routes/cursos.$slug'
 import { Route as AuthenticatedMiCuentaRouteImport } from './routes/_authenticated/mi-cuenta'
 import { Route as AuthenticatedCursosSlugLeccionRouteImport } from './routes/_authenticated/cursos.$slug.$leccion'
 
+const SobreMiRoute = SobreMiRouteImport.update({
+  id: '/sobre-mi',
+  path: '/sobre-mi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
@@ -28,6 +35,11 @@ const MediaRoute = MediaRouteImport.update({
 const GaleriaRoute = GaleriaRouteImport.update({
   id: '/galeria',
   path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BioRoute = BioRouteImport.update({
+  id: '/bio',
+  path: '/bio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -75,8 +87,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/bio': typeof BioRoute
   '/galeria': typeof GaleriaRoute
   '/media': typeof MediaRoute
+  '/sobre-mi': typeof SobreMiRoute
   '/mi-cuenta': typeof AuthenticatedMiCuentaRoute
   '/cursos/$slug': typeof CursosSlugRoute
   '/cursos/': typeof CursosIndexRoute
@@ -86,8 +100,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/bio': typeof BioRoute
   '/galeria': typeof GaleriaRoute
   '/media': typeof MediaRoute
+  '/sobre-mi': typeof SobreMiRoute
   '/mi-cuenta': typeof AuthenticatedMiCuentaRoute
   '/cursos/$slug': typeof CursosSlugRoute
   '/cursos': typeof CursosIndexRoute
@@ -99,8 +115,10 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/bio': typeof BioRoute
   '/galeria': typeof GaleriaRoute
   '/media': typeof MediaRoute
+  '/sobre-mi': typeof SobreMiRoute
   '/_authenticated/mi-cuenta': typeof AuthenticatedMiCuentaRoute
   '/cursos/$slug': typeof CursosSlugRoute
   '/cursos/': typeof CursosIndexRoute
@@ -112,8 +130,10 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/auth'
+    | '/bio'
     | '/galeria'
     | '/media'
+    | '/sobre-mi'
     | '/mi-cuenta'
     | '/cursos/$slug'
     | '/cursos/'
@@ -123,8 +143,10 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/auth'
+    | '/bio'
     | '/galeria'
     | '/media'
+    | '/sobre-mi'
     | '/mi-cuenta'
     | '/cursos/$slug'
     | '/cursos'
@@ -135,8 +157,10 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/admin'
     | '/auth'
+    | '/bio'
     | '/galeria'
     | '/media'
+    | '/sobre-mi'
     | '/_authenticated/mi-cuenta'
     | '/cursos/$slug'
     | '/cursos/'
@@ -148,14 +172,23 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
+  BioRoute: typeof BioRoute
   GaleriaRoute: typeof GaleriaRoute
   MediaRoute: typeof MediaRoute
+  SobreMiRoute: typeof SobreMiRoute
   CursosSlugRoute: typeof CursosSlugRoute
   CursosIndexRoute: typeof CursosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre-mi': {
+      id: '/sobre-mi'
+      path: '/sobre-mi'
+      fullPath: '/sobre-mi'
+      preLoaderRoute: typeof SobreMiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/media': {
       id: '/media'
       path: '/media'
@@ -168,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/galeria'
       fullPath: '/galeria'
       preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bio': {
+      id: '/bio'
+      path: '/bio'
+      fullPath: '/bio'
+      preLoaderRoute: typeof BioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -247,8 +287,10 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
+  BioRoute: BioRoute,
   GaleriaRoute: GaleriaRoute,
   MediaRoute: MediaRoute,
+  SobreMiRoute: SobreMiRoute,
   CursosSlugRoute: CursosSlugRoute,
   CursosIndexRoute: CursosIndexRoute,
 }

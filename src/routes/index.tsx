@@ -8,14 +8,7 @@ import {
   Play,
   PlayCircle,
   Ticket,
-  Zap,
-  Cpu,
-  Guitar,
-  Speaker,
   Disc,
-  GraduationCap,
-  Sparkles,
-  Layers,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { FadeIn } from "@/components/ui/fade-in";
@@ -27,7 +20,6 @@ import { useShows } from "@/lib/site-data";
 
 const heroImg = "/f3004a62-a83f-4ae8-b5ce-8ddb57b56c0c-copied-media~2.jpg";
 const bioImg = "/bio-nueva.jpg";
-const setupImg = "/9c113a46-b0e2-488e-b11d-08095a698ca1-copied-media~2.jpg";
 const quartetImg = "/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg";
 
 export const Route = createFileRoute("/")({
@@ -116,7 +108,7 @@ function Landing() {
           <div className="md:col-span-3 space-y-6">
             <div className="text-xs tracking-[0.3em] text-primary font-semibold">— BIOGRAFÍA</div>
             <h2 className="text-4xl md:text-5xl font-display leading-tight text-foreground">
-              Trayectoria, identidad y constante búsqueda sonora
+              Biografía
             </h2>
             <div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed">
               <p>
@@ -130,15 +122,7 @@ function Landing() {
                 Como líder del{" "}
                 <span className="text-foreground font-semibold italic">Leandro Pagura Quartet</span>
                 , presenta un repertorio de composiciones originales en el que confluyen la
-                sofisticación armónica, la improvisación y una fuerte impronta rítmica. El proyecto
-                propone una mirada contemporánea sobre el jazz fusión, construida a partir del
-                diálogo entre los músicos y de una permanente exploración sonora.
-              </p>
-              <p>
-                Su actividad artística se complementa con una amplia labor docente. Dicta clases,
-                clínicas y masterclasses de bajo eléctrico, acompañando la formación de músicos de
-                distintos niveles y compartiendo herramientas desarrolladas a lo largo de su
-                experiencia profesional.
+                sofisticación armónica, la improvisación y una fuerte impronta rítmica.
               </p>
               <p>
                 Actualmente es{" "}
@@ -146,10 +130,15 @@ function Landing() {
                   endorser de Magma Strings y Swan Basses
                 </span>{" "}
                 y se encuentra trabajando en un nuevo álbum de estudio junto a destacados músicos
-                nacionales e internacionales. En paralelo, continúa desarrollando un proyecto
-                artístico con proyección internacional, orientado a escenarios, ciclos y festivales
-                de <span className="text-foreground font-semibold italic">Europa y América</span>.
+                nacionales e internacionales con proyección hacia festivales de Europa y América.
               </p>
+            </div>
+            <div className="pt-2">
+              <Button asChild size="lg" className="shadow-md">
+                <Link to="/sobre-mi">
+                  Conocé más sobre mí <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </FadeIn>
@@ -159,42 +148,113 @@ function Landing() {
       <section id="musica" className="py-24 bg-accent/10">
         <FadeIn className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3 font-semibold">— MÚSICA</div>
-          <h2 className="text-5xl md:text-6xl font-display mb-10">Escuchá el material</h2>
-          <Card className="p-6 md:p-10 bg-card/60 backdrop-blur border-border/80 transition-all duration-300 hover:shadow-2xl hover:border-primary/40">
-            <p className="text-muted-foreground max-w-2xl mb-8 text-base">
-              Grabaciones, composiciones originales, singles y colaboraciones directamente desde
-              Spotify.
-            </p>
-            <div className="w-full">
-              <iframe
-                data-testid="embed-iframe"
-                style={{ borderRadius: "12px" }}
-                src="https://open.spotify.com/embed/artist/0Mfv0jLx7lR1vpip9uQJcs?utm_source=generator&si=26ed970075e94fe4"
-                width="100%"
-                height="352"
-                frameBorder="0"
-                allowFullScreen
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              ></iframe>
+          <h2 className="text-5xl md:text-6xl font-display mb-10">Música</h2>
+
+          <div className="grid lg:grid-cols-12 gap-8 items-start">
+            <Card className="lg:col-span-7 p-6 md:p-8 bg-card/60 backdrop-blur border-border/80 transition-all duration-300 hover:shadow-2xl hover:border-primary/40">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-display text-foreground">Catálogo en Spotify</h3>
+                <Badge variant="outline" className="text-xs border-green-500/40 text-green-400">
+                  Spotify Oficial
+                </Badge>
+              </div>
+              <p className="text-muted-foreground text-sm mb-6">
+                Grabaciones, singles y producciones discográficas oficiales disponibles en todas las
+                plataformas.
+              </p>
+              <div className="w-full">
+                <iframe
+                  data-testid="embed-iframe"
+                  style={{ borderRadius: "12px" }}
+                  src="https://open.spotify.com/embed/artist/0Mfv0jLx7lR1vpip9uQJcs?utm_source=generator&si=26ed970075e94fe4"
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button variant="outline" size="sm" asChild>
+                  <a
+                    href="https://open.spotify.com/artist/0Mfv0jLx7lR1vpip9uQJcs"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Music2 className="mr-2 size-4 text-green-500" /> Abrir en Spotify
+                  </a>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <a href="https://www.youtube.com/@leandropagura" target="_blank" rel="noreferrer">
+                    <Youtube className="mr-2 size-4 text-red-500" /> Canal de YouTube
+                  </a>
+                </Button>
+              </div>
+            </Card>
+
+            <div className="lg:col-span-5 space-y-4">
+              <Card className="p-6 md:p-8 bg-card/60 backdrop-blur border-border/80 transition-all hover:border-primary/40">
+                <div className="flex items-center justify-between mb-3">
+                  <Badge
+                    variant="outline"
+                    className="border-primary/40 text-primary bg-primary/5 text-xs"
+                  >
+                    EY (Every Year)
+                  </Badge>
+                  <span className="text-xs text-muted-foreground">Fusión & Groove</span>
+                </div>
+                <h3 className="text-2xl font-display text-foreground mb-2">EY — Repertorio & Temas</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                  Composiciones y registros en vivo de EY Cuarteto integrando bajo eléctrico, guitarra, teclados y batería en métricas avanzadas y potente sonido.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
+                    <div>
+                      <div className="font-semibold text-sm">EY — 3,3</div>
+                      <div className="text-xs text-muted-foreground">En vivo Auditorio Kraft</div>
+                    </div>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Play className="size-3 mr-1 fill-current" /> Ver
+                      </a>
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
+                    <div>
+                      <div className="font-semibold text-sm">EY — Shuffle</div>
+                      <div className="text-xs text-muted-foreground">Composición original & solo</div>
+                    </div>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Play className="size-3 mr-1 fill-current" /> Ver
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+                <div className="mt-6 pt-4 border-t border-border">
+                  <Button
+                    asChild
+                    variant="ghost"
+                    size="sm"
+                    className="w-full text-primary hover:text-primary justify-center"
+                  >
+                    <Link to="/media">
+                      Ver toda la música en Galería <ArrowRight className="size-3.5 ml-1.5" />
+                    </Link>
+                  </Button>
+                </div>
+              </Card>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button variant="outline" asChild>
-                <a
-                  href="https://open.spotify.com/artist/0Mfv0jLx7lR1vpip9uQJcs"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Music2 className="mr-2 size-4 text-primary" /> Abrir en Spotify
-                </a>
-              </Button>
-              <Button variant="outline" asChild>
-                <a href="https://www.youtube.com/@leandropagura" target="_blank" rel="noreferrer">
-                  <Youtube className="mr-2 size-4 text-red-500" /> Canal de YouTube
-                </a>
-              </Button>
-            </div>
-          </Card>
+          </div>
         </FadeIn>
       </section>
 
@@ -202,48 +262,104 @@ function Landing() {
       <section id="proyectos" className="py-24">
         <FadeIn className="container-x">
           <div className="text-xs tracking-[0.3em] text-primary mb-3 font-semibold">
-            — PROYECTOS ACTUALES
+            — PROYECTOS
           </div>
-          <h2 className="text-5xl md:text-6xl font-display mb-10">Leandro Pagura Cuarteto</h2>
-          <Card className="overflow-hidden bg-card/60 backdrop-blur border-border/80 transition-all duration-500 hover:shadow-2xl hover:border-primary/40 group">
-            <div className="grid md:grid-cols-2">
-              <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
-                <img
-                  src={quartetImg}
-                  alt="Leandro Pagura Cuarteto"
-                  loading="lazy"
-                  width={1600}
-                  height={1000}
-                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-8 md:p-10 flex flex-col justify-center">
-                <Badge
-                  variant="outline"
-                  className="w-fit mb-4 border-primary/40 text-primary bg-primary/10"
-                >
-                  Ensamble Principal
-                </Badge>
-                <h3 className="text-3xl font-display mb-3">Jazz Fusión & Funk Contemporáneo</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Un colectivo musical de primer nivel liderado por Leandro, explorando la dinámica
-                  del jazz fusión, la improvisación colectiva y el groove sólido. Con un repertorio
-                  de composiciones originales que empujan los límites estéticos y sonoros de la
-                  escena musical actual.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Button asChild className="w-fit">
-                    <a href="#musica">
-                      <PlayCircle className="mr-2 size-4" /> Escuchar material
-                    </a>
-                  </Button>
-                  <Button variant="outline" asChild className="w-fit">
-                    <Link to="/media">Ver sesiones en vivo</Link>
-                  </Button>
+          <h2 className="text-5xl md:text-6xl font-display mb-10">Proyectos</h2>
+
+          <div className="space-y-8">
+            {/* Proyecto 1: Leandro Pagura Cuarteto */}
+            <Card className="overflow-hidden bg-card/60 backdrop-blur border-border/80 transition-all duration-500 hover:shadow-2xl hover:border-primary/40 group">
+              <div className="grid md:grid-cols-2">
+                <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
+                  <img
+                    src={quartetImg}
+                    alt="Leandro Pagura Cuarteto"
+                    loading="lazy"
+                    width={1600}
+                    height={1000}
+                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-8 md:p-10 flex flex-col justify-center">
+                  <Badge
+                    variant="outline"
+                    className="w-fit mb-4 border-primary/40 text-primary bg-primary/10"
+                  >
+                    LP Quartet · Ensamble Principal
+                  </Badge>
+                  <h3 className="text-3xl font-display mb-3">Leandro Pagura Cuarteto</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    Un colectivo musical de primer nivel liderado por Leandro Pagura, explorando la
+                    dinámica del jazz fusión, la improvisación colectiva y el groove sólido. Con un
+                    repertorio de composiciones originales donde convergen sofisticación armónica,
+                    espontaneidad y una contundente presencia rítmica.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild className="w-fit shadow-md">
+                      <a
+                        href="https://www.youtube.com/watch?v=jZKTvZNJuPo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <PlayCircle className="mr-2 size-4" /> Ver Live Session (Grabado en YT)
+                      </a>
+                    </Button>
+                    <Button variant="outline" asChild className="w-fit">
+                      <Link to="/media">Ver en Galería</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+
+            {/* Proyecto 2: EY (Every Year Cuarteto) */}
+            <Card className="overflow-hidden bg-card/60 backdrop-blur border-border/80 transition-all duration-500 hover:shadow-2xl hover:border-primary/40 group">
+              <div className="grid md:grid-cols-2">
+                <div className="p-8 md:p-10 flex flex-col justify-center order-2 md:order-1">
+                  <Badge
+                    variant="outline"
+                    className="w-fit mb-4 border-primary/40 text-primary bg-primary/10"
+                  >
+                    Fusión Instrumental & Rock
+                  </Badge>
+                  <h3 className="text-3xl font-display mb-3">EY (Every Year Cuarteto)</h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    Integrado por Santiago Pagura (guitarra), Leandro Pagura (bajo), Matías Galasso
+                    (teclados) y Ezequiel Ghilardi (batería). Una propuesta enérgica y virtuosa que
+                    combina la fuerza del rock y la flexibilidad armónica del jazz fusión.
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-6">
+                    Grabaciones en vivo en Auditorio Kraft: composiciones originales como "3,3",
+                    "Shuffle" y sesiones de alta intensidad tímbrica.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild variant="outline" className="w-fit">
+                      <a
+                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Play className="mr-2 size-4 fill-current" /> Ver "3,3" en vivo (Kraft)
+                      </a>
+                    </Button>
+                    <Button asChild variant="ghost" className="w-fit">
+                      <Link to="/media">Escuchar en Galería</Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
+                  <img
+                    src="https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg"
+                    alt="EY Cuarteto"
+                    loading="lazy"
+                    width={1600}
+                    height={1000}
+                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+              </div>
+            </Card>
+          </div>
         </FadeIn>
       </section>
 
@@ -318,85 +434,18 @@ function Landing() {
         </FadeIn>
       </section>
 
-      {/* 6. CURSOS (FORMACIÓN DOCENTE & MASTERCLASSES) */}
-      <section id="cursos" className="py-24">
-        <FadeIn className="container-x">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <Badge variant="outline" className="border-primary/40 text-primary bg-primary/10">
-                Docencia & Formación
-              </Badge>
-              <h2 className="text-5xl md:text-6xl font-display leading-none">
-                Clases & <span className="text-primary">Masterclasses</span>
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed text-balance">
-                Con más de dos décadas de trayectoria docente y como músico sesionista, Leandro
-                Pagura dicta clases individuales, clínicas y masterclasses de bajo eléctrico
-                orientadas al perfeccionamiento de músicos de distintos niveles.
-              </p>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                El enfoque pedagógico combina el dominio de la técnica, la precisión rítmica, la
-                búsqueda de un timbre personal, la improvisación consciente y el desarrollo del
-                groove en contextos de jazz, funk, rock y música contemporánea.
-              </p>
-              <div className="pt-2">
-                <Button asChild size="lg">
-                  <a href="#contacto">
-                    <Mail className="mr-2 size-4" /> Consultar por Clases y Clínicas
-                  </a>
-                </Button>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 grid sm:grid-cols-2 gap-4">
-              {[
-                {
-                  icon: Guitar,
-                  title: "Técnica de Bajo Eléctrico",
-                  desc: "Pulsación, digitación, slap, muting, control dinámico y resistencia.",
-                },
-                {
-                  icon: Zap,
-                  title: "Groove & Time Keeping",
-                  desc: "Desarrollo rítmico, subdivisión métrica, métricas irregulares y articulación.",
-                },
-                {
-                  icon: Music2,
-                  title: "Armonía & Improvisación",
-                  desc: "Escalas complejas, modos, sustituciones armónicas y lenguaje solista.",
-                },
-                {
-                  icon: GraduationCap,
-                  title: "Masterclasses & Clínicas",
-                  desc: "Módulos formativos y workshops para instituciones, escuelas y festivales.",
-                },
-              ].map((it) => (
-                <Card
-                  key={it.title}
-                  className="p-6 bg-card/60 backdrop-blur border-border/80 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-primary/50"
-                >
-                  <it.icon className="size-8 text-primary mb-3" />
-                  <h3 className="font-semibold text-base mb-1.5">{it.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{it.desc}</p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* 7. MEDIA (PREVIEW DESTACADO Y ACCESO A PÁGINA SEPARADA /media) */}
+      {/* 6. MEDIA (PREVIEW DESTACADO Y ACCESO A PÁGINA SEPARADA /media) */}
       <section id="media" className="py-24 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-primary/5 blur-[120px] pointer-events-none rounded-full" />
         <FadeIn className="container-x relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
               <div className="text-xs tracking-[0.3em] text-primary mb-3 font-semibold">
-                — MEDIA
+                — GALERÍA
               </div>
               <h2 className="text-5xl md:text-6xl font-display">Momentos & Sesiones</h2>
               <p className="mt-3 text-muted-foreground max-w-xl text-base">
-                Grabaciones en estudio, sesiones en vivo de cuarteto y fotografías oficiales.
+                Música de EY y solista, grabaciones de cuarteto en vivo y fotografías oficiales.
               </p>
             </div>
             <Button asChild size="lg" className="self-start md:self-auto shadow-lg">
@@ -495,89 +544,12 @@ function Landing() {
         </FadeIn>
       </section>
 
-      {/* 8. SETUP (EQUIPAMIENTO OFICIAL CON SWAN BASSES Y MAGMA STRINGS) */}
-      <section id="setup" className="py-24 bg-accent/10">
-        <FadeIn className="container-x grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-border/80 shadow-2xl">
-            <img
-              src={setupImg}
-              alt="Setup y bajos de Leandro Pagura"
-              loading="lazy"
-              width={1920}
-              height={1080}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
-          </div>
-          <div>
-            <div className="text-xs tracking-[0.3em] text-primary mb-3 font-semibold">
-              — SETUP & ENDORSEMENTS
-            </div>
-            <h2 className="text-5xl md:text-6xl font-display mb-8">Equipamiento</h2>
-            <ul className="space-y-6">
-              <li className="flex gap-4">
-                <Guitar className="size-6 text-primary shrink-0 mt-1" />
-                <div>
-                  <div className="font-semibold text-lg flex items-center gap-2">
-                    Swan Custom Basses
-                    <Badge variant="outline" className="text-[10px] border-primary/40 text-primary">
-                      Endorser Oficial
-                    </Badge>
-                  </div>
-                  <div className="text-muted-foreground text-sm mt-1 leading-relaxed">
-                    Bajos SWAN Custom Basses — Modelo Alpha Classic "Red Fury" signature by Leandro
-                    Pagura, e instrumentos pasivos de alta luthería estilo Precision Bass
-                    optimizados para respuesta dinámica.
-                  </div>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <Disc className="size-6 text-primary shrink-0 mt-1" />
-                <div>
-                  <div className="font-semibold text-lg flex items-center gap-2">
-                    Magma Strings
-                    <Badge variant="outline" className="text-[10px] border-primary/40 text-primary">
-                      Endorser Oficial
-                    </Badge>
-                  </div>
-                  <div className="text-muted-foreground text-sm mt-1 leading-relaxed">
-                    Cuerdas Magma Strings — Calibres y aleaciones seleccionadas para obtener máximo
-                    sustain, definición armónica impecable y calidez tímbrica en vivo y en estudio.
-                  </div>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <Cpu className="size-6 text-primary shrink-0 mt-1" />
-                <div>
-                  <div className="font-semibold text-lg">Procesamiento & Preamps</div>
-                  <div className="text-muted-foreground text-sm mt-1 leading-relaxed">
-                    Helix Quad Cortex para emulaciones de amplificadores vintage y modernos,
-                    modulaciones, compresores analógicos y ruteo directo balanceado a consola.
-                  </div>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <Speaker className="size-6 text-primary shrink-0 mt-1" />
-                <div>
-                  <div className="font-semibold text-lg">Amplificación</div>
-                  <div className="text-muted-foreground text-sm mt-1 leading-relaxed">
-                    Sistemas Full Range Flat Response (FRFR) y cabezales Clase D de alta potencia y
-                    máxima fidelidad acústica.
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* 9. CONTACTO */}
-      <section id="contacto" className="py-24">
+      {/* 7. CONTACTO */}
+      <section id="contacto" className="py-16 md:py-20 bg-accent/10">
         <FadeIn className="container-x text-center max-w-3xl mx-auto">
           <div className="text-xs tracking-[0.3em] text-primary mb-3 font-semibold">— CONTACTO</div>
-          <h2 className="text-5xl md:text-6xl font-display mb-6 text-balance">
-            ¿Listo para llevar tu groove al siguiente nivel
-            <br />o coordinar una sesión?
+          <h2 className="text-5xl md:text-6xl font-display mb-4 text-balance">
+            Contacto
           </h2>
           <p className="text-muted-foreground text-base md:text-lg mb-8 text-balance">
             Para contrataciones artísticas, clínicas, masterclasses o clases particulares, podés

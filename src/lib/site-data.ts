@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-export type GalleryItemType = "image" | "video";
+export type GalleryItemType = "image" | "video" | "audio";
 
 export interface GalleryItem {
   id: string;
   type: GalleryItemType;
   title: string;
   description?: string;
-  url: string; // Image URL or YouTube URL
+  url: string; // Image URL, YouTube URL, or Spotify/audio link
   thumbnail?: string;
   category: string;
   order: number;
@@ -23,8 +23,8 @@ export interface ShowItem {
   order: number;
 }
 
-const GALLERY_STORAGE_KEY = "lp_site_gallery_v2";
-const SHOWS_STORAGE_KEY = "lp_site_shows_v2";
+const GALLERY_STORAGE_KEY = "lp_site_gallery_v4";
+const SHOWS_STORAGE_KEY = "lp_site_shows_v4";
 const ADMIN_AUTH_KEY = "lp_admin_session_v1";
 
 // Extract YouTube ID helper
@@ -39,39 +39,81 @@ export function getYouTubeThumbnail(videoId: string): string {
   return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 }
 
-// Initial items with the requested 4 YouTube videos and high quality photos
+// Initial items categorized by Música, Videos y Fotos (incluyendo temas de EY)
 export const INITIAL_GALLERY: GalleryItem[] = [
+  // --- MÚSICA ---
+  {
+    id: "mus-1",
+    type: "audio",
+    title: "EY — 3,3 (Every Year)",
+    description: "Composición original con métricas irregulares y fusión eléctrica contemporánea.",
+    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
+    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
+    category: "EY",
+    order: 1,
+  },
+  {
+    id: "mus-2",
+    type: "audio",
+    title: "EY (Every Year Cuarteto) — Shuffle",
+    description: "Grabación en vivo en Auditorio Kraft (Buenos Aires) junto a Santiago Pagura, Matías Galasso y Ezequiel Ghilardi.",
+    url: "https://www.youtube.com/watch?v=gBA12UG1Q7A",
+    thumbnail: "https://img.youtube.com/vi/gBA12UG1Q7A/hqdefault.jpg",
+    category: "EY",
+    order: 2,
+  },
+  {
+    id: "mus-3",
+    type: "audio",
+    title: "Leandro Pagura — Catálogo en Spotify",
+    description: "Discografía oficial, singles solistas, grabaciones y colaboraciones en streaming.",
+    url: "https://open.spotify.com/artist/0Mfv0jLx7lR1vpip9uQJcs",
+    thumbnail: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+    category: "Spotify",
+    order: 3,
+  },
+  {
+    id: "mus-4",
+    type: "audio",
+    title: "Pupupalec (Versión de Estudio)",
+    description: "Exploración de timbres analógicos, groove denso y técnica avanzada de bajo eléctrico.",
+    url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
+    thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
+    category: "Estudio",
+    order: 4,
+  },
+
+  // --- VIDEOS ---
   {
     id: "yt-1",
     type: "video",
-    title: "Leandro Pagura Cuarteto - Jet Lag in Hulum (live session)",
+    title: "Leandro Pagura Cuarteto - Jet Lag in Hulum (Live Session)",
     description:
-      "Sesión en vivo con el cuarteto presentando repertorio original de jazz fusión y funk.",
+      "Sesión en vivo con el cuarteto presentando repertorio original de jazz fusión y funk grabado en directo.",
     url: "https://www.youtube.com/watch?v=jZKTvZNJuPo",
     thumbnail: "https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg",
     category: "En vivo",
-    order: 1,
+    order: 5,
   },
   {
     id: "yt-2",
     type: "video",
-    title: "EY - 3,3 (Leandro Pagura)",
-    description: "Composición original explorando métricas irregulares y diálogo armónico.",
+    title: "EY - 3,3 (Live Session)",
+    description: "Santiago Pagura (Guitarra), Leandro Pagura (Bajo), Matías Galasso (Teclados), Ezequiel Ghilardi (Batería).",
     url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
     thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
-    category: "Cuarteto",
-    order: 2,
+    category: "EY",
+    order: 6,
   },
   {
     id: "yt-3",
     type: "video",
-    title: "Leandro Pagura - Pupupalec",
-    description:
-      "Material de estudio que combina groove sólido, texturas modernas y técnicas avanzadas de bajo.",
-    url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
-    thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
-    category: "Estudio",
-    order: 3,
+    title: "EY (Every Year) - Shuffle (En Vivo)",
+    description: "Presentación en Auditorio Kraft con sonido directo de consola.",
+    url: "https://www.youtube.com/watch?v=gBA12UG1Q7A",
+    thumbnail: "https://img.youtube.com/vi/gBA12UG1Q7A/hqdefault.jpg",
+    category: "En vivo",
+    order: 7,
   },
   {
     id: "yt-4",
@@ -82,53 +124,55 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     url: "https://www.youtube.com/watch?v=VGt4YSqmOvs",
     thumbnail: "https://img.youtube.com/vi/VGt4YSqmOvs/hqdefault.jpg",
     category: "En vivo",
-    order: 4,
+    order: 8,
   },
+
+  // --- FOTOS ---
   {
     id: "img-1",
     type: "image",
-    title: "En vivo — Bajo & Escenario",
-    description: "Captura de show en directo, potencia rítmica y conexión con el instrumento.",
-    url: "https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?auto=format&fit=crop&w=1200&q=80",
-    category: "En vivo",
-    order: 5,
+    title: "Leandro Pagura Cuarteto — Foto Oficial",
+    description: "Retrato oficial del ensamble junto a destacados músicos de la escena.",
+    url: "/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg",
+    category: "Cuarteto",
+    order: 9,
   },
   {
     id: "img-2",
     type: "image",
-    title: "Grabación en Estudio",
-    description: "Sesión de estudio registrando tomas de bajo para el próximo álbum.",
-    url: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=80",
-    category: "Estudio",
-    order: 6,
+    title: "Retrato de Prensa Oficial",
+    description: "Fotografía de prensa para festivales internacionales y prensa especializada.",
+    url: "/leandro-prensa.jpg",
+    category: "Prensa",
+    order: 10,
   },
   {
     id: "img-3",
     type: "image",
-    title: "Leandro Pagura Cuarteto",
-    description: "Foto oficial del ensamble junto a destacados músicos de la escena.",
-    url: "/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg",
-    category: "Cuarteto",
-    order: 7,
+    title: "En vivo — Escenario & Bajo",
+    description: "Captura de show en directo, potencia rítmica y respuesta dinámica.",
+    url: "/f3004a62-a83f-4ae8-b5ce-8ddb57b56c0c-copied-media~2.jpg",
+    category: "En vivo",
+    order: 11,
   },
   {
     id: "img-4",
     type: "image",
-    title: "Fotografía de Prensa Oficial",
-    description: "Retrato para prensa y festivales internacionales.",
-    url: "/leandro-prensa.jpg",
-    category: "Prensa",
-    order: 8,
+    title: "Retrato de Estudio con Bajo SWAN",
+    description: "Sesión fotográfica con el bajo signature Swan Alpha Classic.",
+    url: "/2b7b07a6-4f30-4bfe-9bd6-e1f77cde3a62-copied-media~2.jpg",
+    category: "Estudio",
+    order: 12,
   },
 ];
 
 export const INITIAL_SHOWS: ShowItem[] = [
   {
-    id: "show-1",
-    date: "28 SEP 2026",
-    title: "Leandro Pagura Cuarteto en Vivo",
-    venue: "Complejo Cultural Atlas, Rosario",
-    ticketUrl: "https://complejoculturalatlas.com.ar",
+    id: "show-rosario-oct31",
+    date: "31 OCT",
+    title: "Leandro Pagura Cuarteto",
+    venue: "Capitán Rosario — Mendoza 930",
+    ticketUrl: "https://damemiticket.com/evento/leandro-pagura-cuarteto",
     soldOut: false,
     order: 1,
   },

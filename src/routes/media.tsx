@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Play,
   Image as ImageIcon,
   Video,
+  Music,
   ExternalLink,
   Search,
   Filter,
@@ -30,16 +31,16 @@ import { useAuth } from "@/hooks/use-auth";
 export const Route = createFileRoute("/media")({
   head: () => ({
     meta: [
-      { title: "Galería de Fotos y Videos — Leandro Pagura" },
+      { title: "Galería de Música, Videos y Fotos — Leandro Pagura" },
       {
         name: "description",
         content:
-          "Galería oficial de Leandro Pagura: videos en vivo, grabaciones de estudio de jazz fusión y funk, y fotografías oficiales.",
+          "Galería multimedia oficial de Leandro Pagura: música de EY y solista, videos en vivo de cuarteto, grabaciones de estudio y fotografías oficiales.",
       },
-      { property: "og:title", content: "Galería de Fotos y Videos — Leandro Pagura" },
+      { property: "og:title", content: "Galería de Música, Videos y Fotos — Leandro Pagura" },
       {
         property: "og:description",
-        content: "Sesiones en vivo, material audiovisual de cuarteto y grabaciones en estudio.",
+        content: "Música, sesiones en vivo de cuarteto y material audiovisual de Leandro Pagura.",
       },
     ],
   }),
@@ -52,7 +53,11 @@ function MediaPage() {
   const { isAdmin: isSessionAdmin } = useAdminSession();
   const isAdmin = isSupabaseAdmin || isSessionAdmin;
 
-  const [filter, setFilter] = useState<"all" | "video" | "image">("all");
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
+  const [filter, setFilter] = useState<"all" | "audio" | "video" | "image">("all");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeItem, setActiveItem] = useState<GalleryItem | null>(null);
@@ -77,6 +82,7 @@ function MediaPage() {
     return true;
   });
 
+  const totalMusic = items.filter((i) => i.type === "audio").length;
   const totalVideos = items.filter((i) => i.type === "video").length;
   const totalPhotos = items.filter((i) => i.type === "image").length;
 
@@ -103,26 +109,28 @@ function MediaPage() {
               </Button>
               <span className="text-muted-foreground/40">/</span>
               <Badge variant="outline" className="border-primary/40 text-primary bg-primary/5">
-                Galería Oficial
+                Galería Multimedia
               </Badge>
             </div>
 
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
               <div>
                 <h1 className="text-5xl md:text-7xl font-display tracking-tight text-foreground">
-                  Galería <span className="text-primary">Audiovisual</span>
+                  Galería <span className="text-primary">Multimedia</span>
                 </h1>
                 <p className="mt-3 text-muted-foreground max-w-2xl text-base md:text-lg leading-relaxed text-balance">
-                  Explorá las sesiones en vivo de jazz fusión, tomas en estudio, fotografías de
-                  prensa y composiciones originales de Leandro Pagura.
+                  Explorá composiciones de EY, sesiones en vivo de jazz fusión, tomas de estudio y
+                  fotografías oficiales de Leandro Pagura.
                 </p>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground bg-card/60 px-3.5 py-2 rounded-xl border border-border">
+                  <span className="font-semibold text-foreground">{totalMusic}</span> Música
+                  <span className="text-border">·</span>
                   <span className="font-semibold text-foreground">{totalVideos}</span> Videos
                   <span className="text-border">·</span>
-                  <span className="font-semibold text-foreground">{totalPhotos}</span> Fotografías
+                  <span className="font-semibold text-foreground">{totalPhotos}</span> Fotos
                 </div>
 
                 {isAdmin && (
@@ -135,10 +143,10 @@ function MediaPage() {
               </div>
             </div>
 
-            {/* Filter and Search Bar */}
+            {/* Filter and Search Bar (Dividir en Música, Videos y Fotos) */}
             <div className="mt-10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-card/60 p-2.5 rounded-2xl border border-border/80 backdrop-blur">
               {/* Type toggle */}
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center flex-wrap gap-1.5">
                 <Button
                   size="sm"
                   variant={filter === "all" ? "default" : "ghost"}
@@ -146,6 +154,14 @@ function MediaPage() {
                   className="text-xs"
                 >
                   Todos ({items.length})
+                </Button>
+                <Button
+                  size="sm"
+                  variant={filter === "audio" ? "default" : "ghost"}
+                  onClick={() => setFilter("audio")}
+                  className="text-xs flex items-center gap-1.5"
+                >
+                  <Music className="size-3.5" /> Música ({totalMusic})
                 </Button>
                 <Button
                   size="sm"
@@ -206,8 +222,10 @@ function MediaPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item) => {
               const isVideo = item.type === "video";
-              const ytId = isVideo ? extractYouTubeId(item.url) : null;
-              const displayImg = isVideo
+              const isAudio = item.type === "audio";
+              const isPlayable = isVideo || isAudio;
+              const ytId = isPlayable ? extractYouTubeId(item.url) : null;
+              const displayImg = isPlayable
                 ? item.thumbnail || (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : "")
                 : item.url;
 
@@ -232,12 +250,18 @@ function MediaPage() {
                     <Badge
                       variant="outline"
                       className={`backdrop-blur text-[11px] font-medium ${
-                        isVideo
-                          ? "bg-red-950/80 border-red-500/40 text-red-300"
-                          : "bg-primary/20 border-primary/40 text-primary"
+                        isAudio
+                          ? "bg-amber-950/80 border-amber-500/40 text-amber-300"
+                          : isVideo
+                            ? "bg-red-950/80 border-red-500/40 text-red-300"
+                            : "bg-primary/20 border-primary/40 text-primary"
                       }`}
                     >
-                      {isVideo ? (
+                      {isAudio ? (
+                        <span className="flex items-center gap-1">
+                          <Music className="size-2.5" /> Música
+                        </span>
+                      ) : isVideo ? (
                         <span className="flex items-center gap-1">
                           <Play className="size-2.5 fill-current" /> Video
                         </span>
@@ -258,11 +282,15 @@ function MediaPage() {
                     )}
                   </div>
 
-                  {/* Center Play Button for Videos */}
-                  {isVideo && (
+                  {/* Center Play Button for Audio or Video */}
+                  {isPlayable && (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="size-14 rounded-full bg-primary/95 text-primary-foreground flex items-center justify-center shadow-xl transform transition-all duration-300 group-hover:scale-115 group-hover:bg-primary">
-                        <Play className="size-6 ml-0.5 fill-current" />
+                        {isAudio ? (
+                          <Play className="size-6 ml-0.5 fill-current" />
+                        ) : (
+                          <Play className="size-6 ml-0.5 fill-current" />
+                        )}
                       </div>
                     </div>
                   )}
@@ -302,7 +330,7 @@ function MediaPage() {
         </section>
       </main>
 
-      {/* Lightbox / Video Modal */}
+      {/* Lightbox / Video / Audio Modal */}
       {activeItem && (
         <Dialog open={!!activeItem} onOpenChange={(open) => !open && setActiveItem(null)}>
           <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background/95 border-border backdrop-blur-2xl">
@@ -312,7 +340,7 @@ function MediaPage() {
             </DialogHeader>
 
             <div>
-              {activeItem.type === "video" ? (
+              {activeItem.type === "video" || (activeItem.type === "audio" && extractYouTubeId(activeItem.url)) ? (
                 <div className="relative aspect-video w-full bg-black">
                   {extractYouTubeId(activeItem.url) ? (
                     <iframe
@@ -324,9 +352,24 @@ function MediaPage() {
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full text-muted-foreground">
-                      Video no disponible
+                      Contenido no disponible
                     </div>
                   )}
+                </div>
+              ) : activeItem.type === "audio" ? (
+                <div className="p-8 bg-card/60 flex flex-col items-center justify-center text-center space-y-4">
+                  <div className="size-16 rounded-full bg-primary/20 text-primary flex items-center justify-center">
+                    <Music className="size-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold">{activeItem.title}</h3>
+                    <p className="text-muted-foreground text-sm max-w-md mt-1">{activeItem.description}</p>
+                  </div>
+                  <Button asChild size="lg">
+                    <a href={activeItem.url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="size-4 mr-2" /> Escuchar en Plataforma
+                    </a>
+                  </Button>
                 </div>
               ) : (
                 <div className="relative max-h-[75vh] flex items-center justify-center bg-black/60 overflow-hidden">
@@ -345,21 +388,23 @@ function MediaPage() {
                       {activeItem.category}
                     </Badge>
                     <Badge variant="secondary" className="text-xs">
-                      {activeItem.type === "video" ? "YouTube Video" : "Fotografía"}
+                      {activeItem.type === "audio"
+                        ? "Música"
+                        : activeItem.type === "video"
+                          ? "Video"
+                          : "Fotografía"}
                     </Badge>
                   </div>
-                  {activeItem.type === "video" && (
-                    <Button variant="ghost" size="sm" asChild>
-                      <a
-                        href={activeItem.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs flex items-center gap-1.5"
-                      >
-                        <ExternalLink className="size-3.5" /> Abrir en YouTube
-                      </a>
-                    </Button>
-                  )}
+                  <Button variant="ghost" size="sm" asChild>
+                    <a
+                      href={activeItem.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs flex items-center gap-1.5"
+                    >
+                      <ExternalLink className="size-3.5" /> Abrir enlace original
+                    </a>
+                  </Button>
                 </div>
 
                 <h4 className="text-2xl font-display tracking-wide mt-3 text-foreground">
