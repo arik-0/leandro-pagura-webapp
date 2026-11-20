@@ -23,7 +23,7 @@ export interface ShowItem {
   order: number;
 }
 
-const GALLERY_STORAGE_KEY = "lp_site_gallery_v4";
+const GALLERY_STORAGE_KEY = "lp_site_gallery_v5";
 const SHOWS_STORAGE_KEY = "lp_site_shows_v4";
 const ADMIN_AUTH_KEY = "lp_admin_session_v1";
 
@@ -47,8 +47,8 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     type: "audio",
     title: "EY — 3,3 (Every Year)",
     description: "Composición original con métricas irregulares y fusión eléctrica contemporánea.",
-    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
-    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
+    url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
+    thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
     category: "EY",
     order: 1,
   },
@@ -75,15 +75,36 @@ export const INITIAL_GALLERY: GalleryItem[] = [
   {
     id: "mus-4",
     type: "audio",
-    title: "Pupupalec (Versión de Estudio)",
-    description: "Exploración de timbres analógicos, groove denso y técnica avanzada de bajo eléctrico.",
-    url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
-    thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
+    title: "Leandro Pagura — Jamingo",
+    description: "Composición original de jazz fusión, groove y fraseo melódico en bajo eléctrico.",
+    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
+    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
     category: "Estudio",
     order: 4,
   },
+  {
+    id: "mus-5",
+    type: "audio",
+    title: "Leandro Pagura — Pupupalec",
+    description: "Exploración de timbres analógicos, groove denso y técnica avanzada de bajo eléctrico.",
+    url: "https://www.youtube.com/watch?v=VGt4YSqmOvs",
+    thumbnail: "https://img.youtube.com/vi/VGt4YSqmOvs/hqdefault.jpg",
+    category: "Estudio",
+    order: 5,
+  },
 
   // --- VIDEOS ---
+  {
+    id: "yt-jaco",
+    type: "video",
+    title: "Leandro Pagura Quartet - Three Views of a Secret | A Tribute to Jaco Pastorius",
+    description:
+      "Homenaje a Jaco Pastorius interpretado en vivo por Leandro Pagura Quartet.",
+    url: "https://www.youtube.com/watch?v=G_TDmxo2utw",
+    thumbnail: "https://img.youtube.com/vi/G_TDmxo2utw/hqdefault.jpg",
+    category: "Cuarteto",
+    order: 6,
+  },
   {
     id: "yt-1",
     type: "video",
@@ -93,27 +114,27 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     url: "https://www.youtube.com/watch?v=jZKTvZNJuPo",
     thumbnail: "https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg",
     category: "En vivo",
-    order: 5,
+    order: 7,
   },
   {
     id: "yt-2",
     type: "video",
-    title: "EY - 3,3 (Live Session)",
+    title: "EY - 3,3 (Leandro Pagura)",
     description: "Santiago Pagura (Guitarra), Leandro Pagura (Bajo), Matías Galasso (Teclados), Ezequiel Ghilardi (Batería).",
-    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
-    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
+    url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
+    thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
     category: "EY",
-    order: 6,
+    order: 8,
   },
   {
     id: "yt-3",
     type: "video",
-    title: "EY (Every Year) - Shuffle (En Vivo)",
+    title: "EY (Every Year Cuarteto) - Shuffle (En Vivo)",
     description: "Presentación en Auditorio Kraft con sonido directo de consola.",
     url: "https://www.youtube.com/watch?v=gBA12UG1Q7A",
     thumbnail: "https://img.youtube.com/vi/gBA12UG1Q7A/hqdefault.jpg",
     category: "En vivo",
-    order: 7,
+    order: 9,
   },
   {
     id: "yt-4",
@@ -124,7 +145,17 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     url: "https://www.youtube.com/watch?v=VGt4YSqmOvs",
     thumbnail: "https://img.youtube.com/vi/VGt4YSqmOvs/hqdefault.jpg",
     category: "En vivo",
-    order: 8,
+    order: 10,
+  },
+  {
+    id: "yt-5",
+    type: "video",
+    title: "Leandro Pagura - Jamingo",
+    description: "Interpretación y registro audiovisual oficial de Jamingo.",
+    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
+    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
+    category: "Estudio",
+    order: 11,
   },
 
   // --- FOTOS ---
@@ -135,7 +166,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Retrato oficial del ensamble junto a destacados músicos de la escena.",
     url: "/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg",
     category: "Cuarteto",
-    order: 9,
+    order: 12,
   },
   {
     id: "img-2",
@@ -144,7 +175,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Fotografía de prensa para festivales internacionales y prensa especializada.",
     url: "/leandro-prensa.jpg",
     category: "Prensa",
-    order: 10,
+    order: 13,
   },
   {
     id: "img-3",
@@ -153,7 +184,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Captura de show en directo, potencia rítmica y respuesta dinámica.",
     url: "/f3004a62-a83f-4ae8-b5ce-8ddb57b56c0c-copied-media~2.jpg",
     category: "En vivo",
-    order: 11,
+    order: 14,
   },
   {
     id: "img-4",
@@ -162,7 +193,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Sesión fotográfica con el bajo signature Swan Alpha Classic.",
     url: "/2b7b07a6-4f30-4bfe-9bd6-e1f77cde3a62-copied-media~2.jpg",
     category: "Estudio",
-    order: 12,
+    order: 15,
   },
 ];
 

@@ -8,6 +8,7 @@ import {
   Upload,
   Video,
   Image as ImageIcon,
+  Music,
   Calendar,
   Ticket,
   ExternalLink,
@@ -47,6 +48,7 @@ import {
   extractYouTubeId,
   getYouTubeThumbnail,
   GalleryItem,
+  GalleryItemType,
   ShowItem,
 } from "@/lib/site-data";
 import { useAuth } from "@/hooks/use-auth";
@@ -76,7 +78,7 @@ function AdminPage() {
   // Gallery Dialog state
   const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
-  const [itemType, setItemType] = useState<"image" | "video">("video");
+  const [itemType, setItemType] = useState<GalleryItemType>("video");
   const [itemTitle, setItemTitle] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [itemUrl, setItemUrl] = useState("");
@@ -101,7 +103,7 @@ function AdminPage() {
       setPassword("");
       setLoginError("");
     } else {
-      setLoginError("Contraseña incorrecta. (Clave: admin o leandro2026)");
+      setLoginError("Contraseña incorrecta. Intentalo nuevamente.");
       toast.error("Contraseña incorrecta.");
     }
   };
@@ -177,6 +179,14 @@ function AdminPage() {
         return;
       }
       thumbnail = getYouTubeThumbnail(ytId);
+    } else if (itemType === "audio") {
+      const ytId = extractYouTubeId(itemUrl);
+      if (ytId) {
+        thumbnail = getYouTubeThumbnail(ytId);
+      } else if (!thumbnail) {
+        thumbnail =
+          "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80";
+      }
     }
 
     saveGalleryItem({
@@ -278,11 +288,6 @@ function AdminPage() {
                   <Lock className="absolute right-3 top-2.5 size-4 text-muted-foreground" />
                 </div>
                 {loginError && <p className="text-xs text-destructive mt-1">{loginError}</p>}
-                <p className="text-[11px] text-muted-foreground">
-                  Pista de acceso:{" "}
-                  <code className="bg-muted px-1.5 py-0.5 rounded text-primary">admin</code> o{" "}
-                  <code className="bg-muted px-1.5 py-0.5 rounded text-primary">leandro2026</code>
-                </p>
               </div>
 
               <Button type="submit" className="w-full">
@@ -385,10 +390,14 @@ function AdminPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {galleryItems.map((item) => {
                 const isVideo = item.type === "video";
-                const ytId = isVideo ? extractYouTubeId(item.url) : null;
-                const displayImg = isVideo
+                const isAudio = item.type === "audio";
+                const isPlayable = isVideo || isAudio;
+                const ytId = isPlayable ? extractYouTubeId(item.url) : null;
+                const displayImg = isPlayable
                   ? item.thumbnail ||
-                    (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : "")
+                    (ytId
+                      ? getYouTubeThumbnail(ytId)
+                      : "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80")
                   : item.url;
 
                 return (
@@ -405,10 +414,12 @@ function AdminPage() {
                         />
                         <div className="absolute top-2 left-2 flex gap-1.5">
                           <Badge
-                            variant={isVideo ? "destructive" : "default"}
-                            className="text-[10px]"
+                            variant={isVideo ? "destructive" : isAudio ? "outline" : "default"}
+                            className={`text-[10px] ${
+                              isAudio ? "bg-amber-950/80 border-amber-500/40 text-amber-300" : ""
+                            }`}
                           >
-                            {isVideo ? "Video" : "Foto"}
+                            {isVideo ? "Video" : isAudio ? "Música" : "Foto"}
                           </Badge>
                           <Badge variant="secondary" className="text-[10px]">
                             {item.category}
@@ -540,33 +551,49 @@ function AdminPage() {
             {/* Type selector */}
             <div className="space-y-1.5">
               <Label>Tipo de Elemento</Label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-2">
                 <Button
                   type="button"
                   variant={itemType === "video" ? "default" : "outline"}
                   onClick={() => setItemType("video")}
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-1.5 text-xs"
                 >
-                  <Video className="size-4" /> Video (YouTube)
+                  <Video className="size-4" /> Video
+                </Button>
+                <Button
+                  type="button"
+                  variant={itemType === "audio" ? "default" : "outline"}
+                  onClick={() => setItemType("audio")}
+                  className="w-full flex items-center justify-center gap-1.5 text-xs"
+                >
+                  <Music className="size-4" /> Música
                 </Button>
                 <Button
                   type="button"
                   variant={itemType === "image" ? "default" : "outline"}
                   onClick={() => setItemType("image")}
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-1.5 text-xs"
                 >
-                  <ImageIcon className="size-4" /> Fotografía
+                  <ImageIcon className="size-4" /> Foto
                 </Button>
               </div>
             </div>
 
-            {/* Video Input */}
-            {itemType === "video" ? (
+            {/* Video or Audio Input */}
+            {itemType === "video" || itemType === "audio" ? (
               <div className="space-y-2">
-                <Label htmlFor="yt-url">Enlace del Video de YouTube</Label>
+                <Label htmlFor="yt-url">
+                  {itemType === "video"
+                    ? "Enlace del Video de YouTube"
+                    : "Enlace de Música (YouTube o Spotify)"}
+                </Label>
                 <Input
                   id="yt-url"
-                  placeholder="https://www.youtube.com/watch?v=..."
+                  placeholder={
+                    itemType === "video"
+                      ? "https://www.youtube.com/watch?v=..."
+                      : "https://www.youtube.com/watch?v=... o https://open.spotify.com/..."
+                  }
                   value={itemUrl}
                   onChange={(e) => {
                     setItemUrl(e.target.value);
@@ -578,7 +605,9 @@ function AdminPage() {
                   required
                 />
                 <p className="text-[11px] text-muted-foreground">
-                  Se detectará automáticamente la miniatura y reproductor de YouTube.
+                  {itemType === "video"
+                    ? "Se detectará automáticamente la miniatura y reproductor de YouTube."
+                    : "Si es un enlace de YouTube, se reproducirá directamente y detectará su miniatura."}
                 </p>
                 {extractYouTubeId(itemUrl) && (
                   <div className="relative aspect-video rounded-lg overflow-hidden border border-border/80 mt-2">

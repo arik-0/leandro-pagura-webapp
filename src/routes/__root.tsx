@@ -81,18 +81,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Leandro Pagura — Bajista, sesionista y educador" },
+      { title: "Leandro Pagura — Bajista, compositor y educador" },
       {
         name: "description",
         content:
-          "Sitio oficial de Leandro Pagura: bajista, sesionista y educador. Groove, sesiones, shows y plataforma de cursos.",
+          "Sitio oficial de Leandro Pagura: bajista, compositor y educador. Jazz fusión, funk, sesiones, proyectos y shows en vivo.",
       },
       { name: "author", content: "Leandro Pagura" },
-      { property: "og:title", content: "Leandro Pagura — Bajista, sesionista y educador" },
+      { property: "og:title", content: "Leandro Pagura — Bajista, compositor y educador" },
       {
         property: "og:description",
         content:
-          "Groove y solidez en la escena musical nacional e internacional. Shows, proyectos y plataforma de cursos.",
+          "Sitio oficial de Leandro Pagura: bajista, compositor y educador. Jazz fusión, funk, sesiones, proyectos y shows en vivo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

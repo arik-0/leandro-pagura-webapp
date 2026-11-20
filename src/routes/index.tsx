@@ -8,7 +8,6 @@ import {
   Play,
   PlayCircle,
   Ticket,
-  Disc,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { FadeIn } from "@/components/ui/fade-in";
@@ -212,11 +211,11 @@ function Landing() {
                   <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
                     <div>
                       <div className="font-semibold text-sm">EY — 3,3</div>
-                      <div className="text-xs text-muted-foreground">En vivo Auditorio Kraft</div>
+                      <div className="text-xs text-muted-foreground">Live Session · Fusión eléctrica</div>
                     </div>
                     <Button size="sm" variant="outline" asChild>
                       <a
-                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        href="https://www.youtube.com/watch?v=jacoVUQzEDg"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -227,11 +226,11 @@ function Landing() {
                   <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
                     <div>
                       <div className="font-semibold text-sm">EY — Shuffle</div>
-                      <div className="text-xs text-muted-foreground">Composición original & solo</div>
+                      <div className="text-xs text-muted-foreground">En vivo Auditorio Kraft</div>
                     </div>
                     <Button size="sm" variant="outline" asChild>
                       <a
-                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        href="https://www.youtube.com/watch?v=gBA12UG1Q7A"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -305,6 +304,15 @@ function Landing() {
                       </a>
                     </Button>
                     <Button variant="outline" asChild className="w-fit">
+                      <a
+                        href="https://www.youtube.com/watch?v=G_TDmxo2utw"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Play className="mr-2 size-4 fill-current" /> Three Views of a Secret (YT)
+                      </a>
+                    </Button>
+                    <Button variant="ghost" asChild className="w-fit">
                       <Link to="/media">Ver en Galería</Link>
                     </Button>
                   </div>
@@ -335,11 +343,11 @@ function Landing() {
                   <div className="flex flex-wrap gap-3">
                     <Button asChild variant="outline" className="w-fit">
                       <a
-                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        href="https://www.youtube.com/watch?v=jacoVUQzEDg"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Play className="mr-2 size-4 fill-current" /> Ver "3,3" en vivo (Kraft)
+                        <Play className="mr-2 size-4 fill-current" /> Ver "3,3" en vivo (YT)
                       </a>
                     </Button>
                     <Button asChild variant="ghost" className="w-fit">
@@ -349,7 +357,7 @@ function Landing() {
                 </div>
                 <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden order-1 md:order-2">
                   <img
-                    src="https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg"
+                    src="https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg"
                     alt="EY Cuarteto"
                     loading="lazy"
                     width={1600}
@@ -461,6 +469,36 @@ function Landing() {
               className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
             >
               <img
+                src="https://img.youtube.com/vi/G_TDmxo2utw/hqdefault.jpg"
+                alt="Three Views of a Secret - Tribute to Jaco Pastorius"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute top-3 left-3">
+                <Badge
+                  variant="outline"
+                  className="bg-red-950/80 border-red-500/40 text-red-300 text-[11px]"
+                >
+                  <Play className="size-2.5 mr-1 fill-current" /> Video Nuevo
+                </Badge>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="size-12 rounded-full bg-primary/90 text-primary-foreground flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Play className="size-5 ml-0.5 fill-current" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 inset-x-0 p-4">
+                <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
+                  Leandro Pagura Quartet - Three Views of a Secret (Tribute to Jaco Pastorius)
+                </h3>
+              </div>
+            </Link>
+
+            <Link
+              to="/media"
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
+            >
+              <img
                 src="https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg"
                 alt="Jet Lag in Hulum"
                 className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -491,32 +529,7 @@ function Landing() {
               className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
             >
               <img
-                src="/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg"
-                alt="Leandro Pagura Cuarteto"
-                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
-              <div className="absolute top-3 left-3">
-                <Badge
-                  variant="outline"
-                  className="bg-primary/20 border-primary/40 text-primary text-[11px]"
-                >
-                  <Disc className="size-2.5 mr-1" /> Cuarteto
-                </Badge>
-              </div>
-              <div className="absolute bottom-0 inset-x-0 p-4">
-                <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
-                  Leandro Pagura Cuarteto Oficial
-                </h3>
-              </div>
-            </Link>
-
-            <Link
-              to="/media"
-              className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/80 bg-card/40 shadow-sm hover:shadow-2xl hover:border-primary/50 transition-all duration-500 hover:-translate-y-1.5"
-            >
-              <img
-                src="https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg"
+                src="https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg"
                 alt="EY - 3,3"
                 className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -562,7 +575,11 @@ function Landing() {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/leandropagura/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Instagram className="mr-2 size-4 text-primary" /> Instagram
               </a>
             </Button>

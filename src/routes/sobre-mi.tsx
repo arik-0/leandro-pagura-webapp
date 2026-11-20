@@ -9,6 +9,7 @@ import {
   Sparkles,
   Mail,
   ArrowRight,
+  Instagram,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -250,6 +251,15 @@ function SobreMiPage() {
                   <Link to="/media">
                     Explorar Galería Multimedia <ArrowRight className="size-4 ml-2" />
                   </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <a
+                    href="https://www.instagram.com/leandropagura/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Instagram className="size-4 mr-2 text-primary" /> Instagram
+                  </a>
                 </Button>
               </div>
             </div>
