@@ -23,7 +23,7 @@ export interface ShowItem {
   order: number;
 }
 
-const GALLERY_STORAGE_KEY = "lp_site_gallery_v5";
+const GALLERY_STORAGE_KEY = "lp_site_gallery_v6";
 const SHOWS_STORAGE_KEY = "lp_site_shows_v4";
 const ADMIN_AUTH_KEY = "lp_admin_session_v1";
 
@@ -45,8 +45,9 @@ export const INITIAL_GALLERY: GalleryItem[] = [
   {
     id: "mus-1",
     type: "audio",
-    title: "EY — 3,3 (Every Year)",
-    description: "Composición original con métricas irregulares y fusión eléctrica contemporánea.",
+    title: "EY - 3,3 (Leandro Pagura)",
+    description:
+      "Grabado en Estudio Pennylane (Rosario). Ezequiel Ghilardi (Batería), Leandro Pagura (Bajo), Matías Galasso (Teclados), Santiago Pagura (Guitarra).",
     url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
     thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
     category: "EY",
@@ -55,8 +56,9 @@ export const INITIAL_GALLERY: GalleryItem[] = [
   {
     id: "mus-2",
     type: "audio",
-    title: "EY (Every Year Cuarteto) — Shuffle",
-    description: "Grabación en vivo en Auditorio Kraft (Buenos Aires) junto a Santiago Pagura, Matías Galasso y Ezequiel Ghilardi.",
+    title: "EY (Every Year Cuarteto) / \"Shuffle\"",
+    description:
+      "Grabado en vivo en Auditorio Kraft (Buenos Aires). Santiago Pagura (Guitarra), Leandro Pagura (Bajo), Matías Galasso (Teclado), Ezequiel Ghilardi (Batería).",
     url: "https://www.youtube.com/watch?v=gBA12UG1Q7A",
     thumbnail: "https://img.youtube.com/vi/gBA12UG1Q7A/hqdefault.jpg",
     category: "EY",
@@ -65,32 +67,56 @@ export const INITIAL_GALLERY: GalleryItem[] = [
   {
     id: "mus-3",
     type: "audio",
-    title: "Leandro Pagura — Catálogo en Spotify",
-    description: "Discografía oficial, singles solistas, grabaciones y colaboraciones en streaming.",
-    url: "https://open.spotify.com/artist/0Mfv0jLx7lR1vpip9uQJcs",
-    thumbnail: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
-    category: "Spotify",
+    title: "Leandro Pagura - Jamingo",
+    description:
+      "Grabado en Domo Estudio. Adrián Schinoff (Piano y Melódica), Álvaro Manzanero (Batería), Pablo Cordero (Voz), Leandro Pagura (Bajo).",
+    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
+    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
+    category: "Estudio",
     order: 3,
   },
   {
     id: "mus-4",
     type: "audio",
-    title: "Leandro Pagura — Jamingo",
-    description: "Composición original de jazz fusión, groove y fraseo melódico en bajo eléctrico.",
-    url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
-    thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
+    title: "Leandro Pagura - Pupupalec",
+    description:
+      "Matías Galasso (Teclados), Ezequiel Ghilardi (Batería), Leandro Pagura (Bajo). Mezcla y mastering: Santiago Pagura.",
+    url: "https://www.youtube.com/watch?v=VGt4YSqmOvs",
+    thumbnail: "https://img.youtube.com/vi/VGt4YSqmOvs/hqdefault.jpg",
     category: "Estudio",
     order: 4,
   },
   {
     id: "mus-5",
     type: "audio",
-    title: "Leandro Pagura — Pupupalec",
-    description: "Exploración de timbres analógicos, groove denso y técnica avanzada de bajo eléctrico.",
-    url: "https://www.youtube.com/watch?v=VGt4YSqmOvs",
-    thumbnail: "https://img.youtube.com/vi/VGt4YSqmOvs/hqdefault.jpg",
-    category: "Estudio",
+    title: "Leandro Pagura Quartet - Three Views of a Secret | A Tribute to Jaco Pastorius",
+    description:
+      "Live Session en Delia Records (2026). Santiago Pagura (Guitarra), Matías Galasso (Teclado), Álvaro Manzanero (Batería), Leandro Pagura (Bajo).",
+    url: "https://www.youtube.com/watch?v=G_TDmxo2utw",
+    thumbnail: "https://img.youtube.com/vi/G_TDmxo2utw/hqdefault.jpg",
+    category: "Cuarteto",
     order: 5,
+  },
+  {
+    id: "mus-6",
+    type: "audio",
+    title: "Leandro Pagura Cuarteto - Jet Lag in Hulum (live session)",
+    description:
+      "Live Session en Delia Records (2026). Santiago Pagura (Guitarra), Matías Galasso (Teclado), Álvaro Manzanero (Batería), Leandro Pagura (Bajo).",
+    url: "https://www.youtube.com/watch?v=jZKTvZNJuPo",
+    thumbnail: "https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg",
+    category: "Cuarteto",
+    order: 6,
+  },
+  {
+    id: "mus-7",
+    type: "audio",
+    title: "Leandro Pagura — Catálogo en Spotify",
+    description: "Discografía oficial, singles solistas, grabaciones y colaboraciones en streaming.",
+    url: "https://open.spotify.com/artist/0Mfv0jLx7lR1vpip9uQJcs",
+    thumbnail: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+    category: "Spotify",
+    order: 7,
   },
 
   // --- VIDEOS ---
@@ -99,63 +125,66 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     type: "video",
     title: "Leandro Pagura Quartet - Three Views of a Secret | A Tribute to Jaco Pastorius",
     description:
-      "Homenaje a Jaco Pastorius interpretado en vivo por Leandro Pagura Quartet.",
+      "Live Session en Delia Records (2026). Santiago Pagura (Guitarra), Matías Galasso (Teclado), Álvaro Manzanero (Batería), Leandro Pagura (Bajo).",
     url: "https://www.youtube.com/watch?v=G_TDmxo2utw",
     thumbnail: "https://img.youtube.com/vi/G_TDmxo2utw/hqdefault.jpg",
     category: "Cuarteto",
-    order: 6,
+    order: 8,
   },
   {
     id: "yt-1",
     type: "video",
-    title: "Leandro Pagura Cuarteto - Jet Lag in Hulum (Live Session)",
+    title: "Leandro Pagura Cuarteto - Jet Lag in Hulum (live session)",
     description:
-      "Sesión en vivo con el cuarteto presentando repertorio original de jazz fusión y funk grabado en directo.",
+      "Live Session en Delia Records (2026). Santiago Pagura (Guitarra), Matías Galasso (Teclado), Álvaro Manzanero (Batería), Leandro Pagura (Bajo).",
     url: "https://www.youtube.com/watch?v=jZKTvZNJuPo",
     thumbnail: "https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg",
-    category: "En vivo",
-    order: 7,
+    category: "Cuarteto",
+    order: 9,
   },
   {
     id: "yt-2",
     type: "video",
     title: "EY - 3,3 (Leandro Pagura)",
-    description: "Santiago Pagura (Guitarra), Leandro Pagura (Bajo), Matías Galasso (Teclados), Ezequiel Ghilardi (Batería).",
+    description:
+      "Grabado en Estudio Pennylane (Rosario). Ezequiel Ghilardi (Batería), Leandro Pagura (Bajo), Matías Galasso (Teclados), Santiago Pagura (Guitarra).",
     url: "https://www.youtube.com/watch?v=jacoVUQzEDg",
     thumbnail: "https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg",
     category: "EY",
-    order: 8,
+    order: 10,
   },
   {
     id: "yt-3",
     type: "video",
-    title: "EY (Every Year Cuarteto) - Shuffle (En Vivo)",
-    description: "Presentación en Auditorio Kraft con sonido directo de consola.",
+    title: "EY (Every Year Cuarteto) / \"Shuffle\"",
+    description:
+      "Grabado en vivo en Auditorio Kraft (Buenos Aires). Santiago Pagura (Guitarra), Leandro Pagura (Bajo), Matías Galasso (Teclado), Ezequiel Ghilardi (Batería).",
     url: "https://www.youtube.com/watch?v=gBA12UG1Q7A",
     thumbnail: "https://img.youtube.com/vi/gBA12UG1Q7A/hqdefault.jpg",
-    category: "En vivo",
-    order: 9,
+    category: "EY",
+    order: 11,
   },
   {
     id: "yt-4",
     type: "video",
-    title: "Leandro Pagura - Pupupalec (Live)",
+    title: "Leandro Pagura - Pupupalec",
     description:
-      "Interpretación en directo donde se despliega la dinámica e improvisación característica del ensamble.",
+      "Matías Galasso (Teclados), Ezequiel Ghilardi (Batería), Leandro Pagura (Bajo). Mezcla y mastering: Santiago Pagura.",
     url: "https://www.youtube.com/watch?v=VGt4YSqmOvs",
     thumbnail: "https://img.youtube.com/vi/VGt4YSqmOvs/hqdefault.jpg",
-    category: "En vivo",
-    order: 10,
+    category: "Estudio",
+    order: 12,
   },
   {
     id: "yt-5",
     type: "video",
     title: "Leandro Pagura - Jamingo",
-    description: "Interpretación y registro audiovisual oficial de Jamingo.",
+    description:
+      "Grabado en Domo Estudio. Adrián Schinoff (Piano y Melódica), Álvaro Manzanero (Batería), Pablo Cordero (Voz), Leandro Pagura (Bajo).",
     url: "https://www.youtube.com/watch?v=hLCUGWqtJjk",
     thumbnail: "https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg",
     category: "Estudio",
-    order: 11,
+    order: 13,
   },
 
   // --- FOTOS ---
@@ -166,7 +195,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Retrato oficial del ensamble junto a destacados músicos de la escena.",
     url: "/71f23e85-f3c4-426b-af51-99fbc5ae9ccf-copied-media~2.jpg",
     category: "Cuarteto",
-    order: 12,
+    order: 14,
   },
   {
     id: "img-2",
@@ -175,7 +204,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Fotografía de prensa para festivales internacionales y prensa especializada.",
     url: "/leandro-prensa.jpg",
     category: "Prensa",
-    order: 13,
+    order: 15,
   },
   {
     id: "img-3",
@@ -184,7 +213,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Captura de show en directo, potencia rítmica y respuesta dinámica.",
     url: "/f3004a62-a83f-4ae8-b5ce-8ddb57b56c0c-copied-media~2.jpg",
     category: "En vivo",
-    order: 14,
+    order: 16,
   },
   {
     id: "img-4",
@@ -193,7 +222,7 @@ export const INITIAL_GALLERY: GalleryItem[] = [
     description: "Sesión fotográfica con el bajo signature Swan Alpha Classic.",
     url: "/2b7b07a6-4f30-4bfe-9bd6-e1f77cde3a62-copied-media~2.jpg",
     category: "Estudio",
-    order: 15,
+    order: 17,
   },
 ];
 

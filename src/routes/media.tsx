@@ -342,7 +342,26 @@ function MediaPage() {
             <div>
               {activeItem.type === "video" || (activeItem.type === "audio" && extractYouTubeId(activeItem.url)) ? (
                 <div className="relative aspect-video w-full bg-black">
-                  {extractYouTubeId(activeItem.url) ? (
+                  {extractYouTubeId(activeItem.url) === "hLCUGWqtJjk" ? (
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <img
+                        src="https://img.youtube.com/vi/hLCUGWqtJjk/hqdefault.jpg"
+                        alt={activeItem.title}
+                        className="w-full h-full object-cover opacity-50"
+                      />
+                      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center bg-black/50">
+                        <p className="text-sm text-muted-foreground max-w-md">
+                          Este video tiene restringida la reproducción integrada externa por
+                          configuración del propietario en YouTube.
+                        </p>
+                        <Button asChild size="lg" className="shadow-xl">
+                          <a href={activeItem.url} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="size-4 mr-2" /> Reproducir 'Leandro Pagura - Jamingo' en YouTube
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  ) : extractYouTubeId(activeItem.url) ? (
                     <iframe
                       className="w-full h-full"
                       src={`https://www.youtube-nocookie.com/embed/${extractYouTubeId(activeItem.url)}?autoplay=1&rel=0`}

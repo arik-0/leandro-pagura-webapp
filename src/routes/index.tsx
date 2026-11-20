@@ -210,8 +210,8 @@ function Landing() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
                     <div>
-                      <div className="font-semibold text-sm">EY — 3,3</div>
-                      <div className="text-xs text-muted-foreground">Live Session · Fusión eléctrica</div>
+                      <div className="font-semibold text-sm">EY - 3,3 (Leandro Pagura)</div>
+                      <div className="text-xs text-muted-foreground">Estudio Pennylane · Rosario</div>
                     </div>
                     <Button size="sm" variant="outline" asChild>
                       <a
@@ -225,12 +225,44 @@ function Landing() {
                   </div>
                   <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
                     <div>
-                      <div className="font-semibold text-sm">EY — Shuffle</div>
+                      <div className="font-semibold text-sm">EY (Every Year Cuarteto) / "Shuffle"</div>
                       <div className="text-xs text-muted-foreground">En vivo Auditorio Kraft</div>
                     </div>
                     <Button size="sm" variant="outline" asChild>
                       <a
                         href="https://www.youtube.com/watch?v=gBA12UG1Q7A"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Play className="size-3 mr-1 fill-current" /> Ver
+                      </a>
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
+                    <div>
+                      <div className="font-semibold text-sm">Leandro Pagura - Jamingo</div>
+                      <div className="text-xs text-muted-foreground">Domo Estudio</div>
+                    </div>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://www.youtube.com/watch?v=hLCUGWqtJjk"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <Play className="size-3 mr-1 fill-current" /> Ver
+                      </a>
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between p-3.5 rounded-xl bg-background/60 border border-border">
+                    <div>
+                      <div className="font-semibold text-sm">Leandro Pagura - Pupupalec</div>
+                      <div className="text-xs text-muted-foreground">
+                        Matías Galasso · Ezequiel Ghilardi · Leandro Pagura
+                      </div>
+                    </div>
+                    <Button size="sm" variant="outline" asChild>
+                      <a
+                        href="https://www.youtube.com/watch?v=VGt4YSqmOvs"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -300,7 +332,7 @@ function Landing() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <PlayCircle className="mr-2 size-4" /> Ver Live Session (Grabado en YT)
+                        <PlayCircle className="mr-2 size-4" /> Jet Lag in Hulum (live session)
                       </a>
                     </Button>
                     <Button variant="outline" asChild className="w-fit">
@@ -309,7 +341,7 @@ function Landing() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Play className="mr-2 size-4 fill-current" /> Three Views of a Secret (YT)
+                        <Play className="mr-2 size-4 fill-current" /> Three Views of a Secret | Tribute to Jaco Pastorius
                       </a>
                     </Button>
                     <Button variant="ghost" asChild className="w-fit">
@@ -337,8 +369,9 @@ function Landing() {
                     combina la fuerza del rock y la flexibilidad armónica del jazz fusión.
                   </p>
                   <p className="text-xs text-muted-foreground mb-6">
-                    Grabaciones en vivo en Auditorio Kraft: composiciones originales como "3,3",
-                    "Shuffle" y sesiones de alta intensidad tímbrica.
+                    Registros emblemáticos como 'EY - 3,3 (Leandro Pagura)' (grabado en Estudio
+                    Pennylane, Rosario) y 'EY (Every Year Cuarteto) / Shuffle' (grabado en vivo en
+                    Auditorio Kraft, Buenos Aires).
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <Button asChild variant="outline" className="w-fit">
@@ -347,11 +380,20 @@ function Landing() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Play className="mr-2 size-4 fill-current" /> Ver "3,3" en vivo (YT)
+                        <Play className="mr-2 size-4 fill-current" /> EY - 3,3 (Leandro Pagura)
+                      </a>
+                    </Button>
+                    <Button asChild variant="outline" className="w-fit">
+                      <a
+                        href="https://www.youtube.com/watch?v=gBA12UG1Q7A"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Play className="mr-2 size-4 fill-current" /> EY / "Shuffle" (Auditorio Kraft)
                       </a>
                     </Button>
                     <Button asChild variant="ghost" className="w-fit">
-                      <Link to="/media">Escuchar en Galería</Link>
+                      <Link to="/media">Ver en Galería</Link>
                     </Button>
                   </div>
                 </div>
@@ -489,7 +531,7 @@ function Landing() {
               </div>
               <div className="absolute bottom-0 inset-x-0 p-4">
                 <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
-                  Leandro Pagura Quartet - Three Views of a Secret (Tribute to Jaco Pastorius)
+                  Leandro Pagura Quartet - Three Views of a Secret | A Tribute to Jaco Pastorius
                 </h3>
               </div>
             </Link>
@@ -500,7 +542,7 @@ function Landing() {
             >
               <img
                 src="https://img.youtube.com/vi/jZKTvZNJuPo/hqdefault.jpg"
-                alt="Jet Lag in Hulum"
+                alt="Leandro Pagura Cuarteto - Jet Lag in Hulum (live session)"
                 className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
@@ -519,7 +561,7 @@ function Landing() {
               </div>
               <div className="absolute bottom-0 inset-x-0 p-4">
                 <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors">
-                  Leandro Pagura Cuarteto - Jet Lag in Hulum
+                  Leandro Pagura Cuarteto - Jet Lag in Hulum (live session)
                 </h3>
               </div>
             </Link>
@@ -530,7 +572,7 @@ function Landing() {
             >
               <img
                 src="https://img.youtube.com/vi/jacoVUQzEDg/hqdefault.jpg"
-                alt="EY - 3,3"
+                alt="EY - 3,3 (Leandro Pagura)"
                 className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85 group-hover:opacity-90 transition-opacity" />
