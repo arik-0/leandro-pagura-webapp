@@ -41,12 +41,13 @@ export function useAuth() {
       return;
     }
     try {
-      supabase
-        .rpc("has_role", { _user_id: user.id, _role: "admin" })
+      Promise.resolve(
+        supabase.rpc("has_role", { _user_id: user.id, _role: "admin" })
+      )
         .then(({ data }) => {
           setIsAdmin(!!data);
         })
-        .catch((err) => {
+        .catch((err: unknown) => {
           console.warn("[useAuth] has_role error:", err);
         });
     } catch (e) {
