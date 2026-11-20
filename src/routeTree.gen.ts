@@ -9,42 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SobreMiRouteImport } from './routes/sobre-mi'
-import { Route as MediaRouteImport } from './routes/media'
-import { Route as GaleriaRouteImport } from './routes/galeria'
-import { Route as BioRouteImport } from './routes/bio'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BioRouteImport } from './routes/bio'
+import { Route as GaleriaRouteImport } from './routes/galeria'
+import { Route as MediaRouteImport } from './routes/media'
+import { Route as SobreMiRouteImport } from './routes/sobre-mi'
+import { Route as AuthenticatedMiCuentaRouteImport } from './routes/_authenticated/mi-cuenta'
 import { Route as CursosIndexRouteImport } from './routes/cursos.index'
 import { Route as CursosSlugRouteImport } from './routes/cursos.$slug'
-import { Route as AuthenticatedMiCuentaRouteImport } from './routes/_authenticated/mi-cuenta'
 import { Route as AuthenticatedCursosSlugLeccionRouteImport } from './routes/_authenticated/cursos.$slug.$leccion'
 
-const SobreMiRoute = SobreMiRouteImport.update({
-  id: '/sobre-mi',
-  path: '/sobre-mi',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MediaRoute = MediaRouteImport.update({
-  id: '/media',
-  path: '/media',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GaleriaRoute = GaleriaRouteImport.update({
-  id: '/galeria',
-  path: '/galeria',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BioRoute = BioRouteImport.update({
-  id: '/bio',
-  path: '/bio',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -52,14 +36,35 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const BioRoute = BioRouteImport.update({
+  id: '/bio',
+  path: '/bio',
   getParentRoute: () => rootRouteImport,
+} as any)
+const GaleriaRoute = GaleriaRouteImport.update({
+  id: '/galeria',
+  path: '/galeria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreMiRoute = SobreMiRouteImport.update({
+  id: '/sobre-mi',
+  path: '/sobre-mi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedMiCuentaRoute = AuthenticatedMiCuentaRouteImport.update({
+  id: '/mi-cuenta',
+  path: '/mi-cuenta',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const CursosIndexRoute = CursosIndexRouteImport.update({
   id: '/cursos/',
@@ -70,11 +75,6 @@ const CursosSlugRoute = CursosSlugRouteImport.update({
   id: '/cursos/$slug',
   path: '/cursos/$slug',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedMiCuentaRoute = AuthenticatedMiCuentaRouteImport.update({
-  id: '/mi-cuenta',
-  path: '/mi-cuenta',
-  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedCursosSlugLeccionRoute =
   AuthenticatedCursosSlugLeccionRouteImport.update({
@@ -182,46 +182,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sobre-mi': {
-      id: '/sobre-mi'
-      path: '/sobre-mi'
-      fullPath: '/sobre-mi'
-      preLoaderRoute: typeof SobreMiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/media': {
-      id: '/media'
-      path: '/media'
-      fullPath: '/media'
-      preLoaderRoute: typeof MediaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/galeria': {
-      id: '/galeria'
-      path: '/galeria'
-      fullPath: '/galeria'
-      preLoaderRoute: typeof GaleriaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bio': {
-      id: '/bio'
-      path: '/bio'
-      fullPath: '/bio'
-      preLoaderRoute: typeof BioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -231,12 +196,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bio': {
+      id: '/bio'
+      path: '/bio'
+      fullPath: '/bio'
+      preLoaderRoute: typeof BioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galeria': {
+      id: '/galeria'
+      path: '/galeria'
+      fullPath: '/galeria'
+      preLoaderRoute: typeof GaleriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre-mi': {
+      id: '/sobre-mi'
+      path: '/sobre-mi'
+      fullPath: '/sobre-mi'
+      preLoaderRoute: typeof SobreMiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/mi-cuenta': {
+      id: '/_authenticated/mi-cuenta'
+      path: '/mi-cuenta'
+      fullPath: '/mi-cuenta'
+      preLoaderRoute: typeof AuthenticatedMiCuentaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/cursos/': {
       id: '/cursos/'
@@ -251,13 +258,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/cursos/$slug'
       preLoaderRoute: typeof CursosSlugRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/mi-cuenta': {
-      id: '/_authenticated/mi-cuenta'
-      path: '/mi-cuenta'
-      fullPath: '/mi-cuenta'
-      preLoaderRoute: typeof AuthenticatedMiCuentaRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/cursos/$slug/$leccion': {
       id: '/_authenticated/cursos/$slug/$leccion'

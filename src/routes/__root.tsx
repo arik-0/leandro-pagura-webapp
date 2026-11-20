@@ -37,7 +37,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -49,9 +49,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight">Algo falló</h1>
         <p className="mt-2 text-sm text-muted-foreground">Podés reintentar o volver al inicio.</p>
-        {error && (
+        {Boolean(error) && (
           <div className="mt-4 p-3 rounded-lg bg-destructive/10 border border-destructive/20 text-left text-xs font-mono text-destructive max-h-36 overflow-auto">
-            {error.message || String(error)}
+            {error instanceof Error ? error.message : String(error)}
           </div>
         )}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
